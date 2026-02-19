@@ -1,0 +1,21 @@
+.modifyDonationbutton{
+    background-color: white;
+    color: rgb(65, 64, 64);
+    font-weight: bold;
+    height: 6.5rem;
+    width: 100%;
+    border-radius: 1rem;
+    font-size:xx-large;
+    
+}
+.modifyDonationbutton:hover{
+    background-color: #C6E4D6;
+    color: rgb(65, 64, 64);
+    
+    
+}
+
+.inputbox{
+    width: 75%;
+}
+

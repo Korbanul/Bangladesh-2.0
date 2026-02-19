@@ -1,0 +1,17 @@
+.NewsCard{
+    background-color: white;
+    border-radius: 1rem;
+    
+}
+
+.eachcard{
+    border: none;
+    
+}
+
+.CardImg{
+  height: 100%;
+  width: 100%;
+  object-fit:fill;
+  border-radius: 2rem;
+}

@@ -1,0 +1,14 @@
+.SubscribeBox{
+    background-color: #C6E4D6;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    /* margin-left: 4rem;
+    margin-right: 2rem; */
+    width: 70%;
+    color: rgb(97, 95, 95);
+}
+.Inputbox{
+    width: 50%;
+    height: 100%;
+}

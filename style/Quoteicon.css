@@ -1,0 +1,9 @@
+.quote-icon {
+    width: 8vw;        /* responsive width based on screen */
+    max-width: 60px;   /* don't grow too big on desktop */
+    min-width: 30px;   /* don't get too small on mobile */
+    height: auto;
+    opacity: 60%;
+    
+    
+  }
