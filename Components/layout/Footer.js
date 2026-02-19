@@ -15,7 +15,7 @@ export default function FooterBD() {
                     </Col>
                     <Col xs={12} md={12} lg={12} className="d-flex align-items-center justify-content-center">
                         <Image
-                            src={"./facebook.png"}
+                            src={"/Facebook_Logo_Primary.png"}
                             alt="facebook"
                             width={25}
                             height={25}
@@ -23,21 +23,19 @@ export default function FooterBD() {
                         />
 
                         <Image
-                            src={"./instagram.png"}
+                            src={"/instagram.png"}
                             alt="Instagram"
                             width={25}
                             height={25}
                             className="mx-2"
                         />
                         <Image
-                            src={"./twitter.png"}
+                            src={"/twitter.png"}
                             alt="Twitter"
                             width={25}
                             height={25}
                             className="mx-2"
                         />
-
-
                     </Col>
                 </Row>
             </Container>
