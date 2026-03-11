@@ -1,6 +1,7 @@
 import { Fira_Sans } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../globals.css";
+import NavBarWithLogin from "@/Components/layout/NavbarWithLogin";
 
 
 const firaSans = Fira_Sans({
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       
       <body className={`${firaSans.className}`}>
-        
+        <NavBarWithLogin/>
         {children}
         
       </body>

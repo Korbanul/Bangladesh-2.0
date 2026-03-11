@@ -25,7 +25,7 @@ export default function page({ onSubmit }) {
             console.log("SignUp Successful", response);
             handleClear()
         } catch (error) {
-            console.error("SignUp Failed",error)
+            console.error("SignUp Failed", error)
         }
 
     }
@@ -35,31 +35,36 @@ export default function page({ onSubmit }) {
 
         <Container className="SignupPage">
 
-            <h2 className="signupTitle">Create Account</h2>
-            <Form onSubmit={handleSubmit(onsubmit)} className="SignupBox">
+            
+            <Form onSubmit={handleSubmit(onsubmit)} className="SignupBox ">
+            <h2 className="signupTitle ">Create Account</h2>
                 <Row>
-                    <Form.Group as={Col} className="mb-3" xs={12} md={12} lg={12}>
+
+                    <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                             type="text"
+                            placeholder="Enter your name"
                             {...register("username")}
 
                         />
                         <p className="text-danger">{errors.username?.message}</p>
                     </Form.Group>
-                    <Form.Group as={Col} className="mb-3" xs={12} md={12} lg={12}>
+                    <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                             type="email"
+                            placeholder="name@example.com"
                             {...register("email")}
 
                         />
                         <p className="text-danger">{errors.email?.message}</p>
                     </Form.Group>
-                    <Form.Group as={Col} className="mb-3" xs={12} md={12} lg={12}>
+                    <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
+                            placeholder="********"
                             {...register("password")}
 
                         />
