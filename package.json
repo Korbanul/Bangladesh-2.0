@@ -16,6 +16,7 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.2",
+    "sweetalert2": "^11.26.22",
     "zod": "^4.3.6"
   },
   "devDependencies": {
