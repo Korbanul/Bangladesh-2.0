@@ -1,0 +1,21 @@
+.LoginPage{
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F5F5;
+
+}
+.LoginBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    box-shadow:0 10px 25px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f1f1f1;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 420px;
+}

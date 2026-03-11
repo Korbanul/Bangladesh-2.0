@@ -8,3 +8,8 @@ export const signUpSchema=z.object({
     password:z.string().min(6,"Minimum length is 6 charecter")
 
 });
+
+export const loginSchema = z.object({
+    username: z.string().min(3, "Username required"),
+    password: z.string().min(6, "Password must be at least 6 characters")
+  });

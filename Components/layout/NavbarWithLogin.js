@@ -15,7 +15,7 @@ export default function NavBarWithLogin() {
                     <Navbar.Brand  > Bangladesh 2.0</Navbar.Brand>
 
                     <Nav >
-                        <Link href="/signUp" className="text-decoration-none">
+                        <Link href="/logIn" className="text-decoration-none">
                             <CustomButton variant="outline-success" size="md" /* onClick={() => setshowSignup(true)}*/>
                                 LogIn
                             </CustomButton>

@@ -6,3 +6,9 @@ export async function signUpUser(data){
         body:JSON.stringify(data) //convert object into a JSON string
     });
 }
+export async function LoginUser(data){
+    return apiClient("/auth/login",{
+        method:"POST",
+        body:JSON.stringify(data) 
+    });
+}

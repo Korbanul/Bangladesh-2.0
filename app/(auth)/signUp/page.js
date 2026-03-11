@@ -64,9 +64,14 @@ export default function page() {
                             type="text"
                             placeholder="Enter your name"
                             {...register("username")}
+                            isInvalid={!!errors.username} //!!convert the value into boolean true or false
 
                         />
-                        <p className="text-danger">{errors.username?.message}</p>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.username?.message}
+                        </Form.Control.Feedback>
+
+                        {/* <p className="text-danger">{errors.username?.message}</p> */}
                     </Form.Group>
                     <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Email *</Form.Label>
@@ -74,9 +79,13 @@ export default function page() {
                             type="email"
                             placeholder="name@example.com"
                             {...register("email")}
+                            isInvalid={!!errors.email}
 
                         />
-                        <p className="text-danger">{errors.email?.message}</p>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.email?.message}
+                        </Form.Control.Feedback>
+                        {/* <p className="text-danger">{errors.email?.message}</p> */}
                     </Form.Group>
                     <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Password *</Form.Label>
@@ -84,16 +93,19 @@ export default function page() {
                             type="password"
                             placeholder="********"
                             {...register("password")}
-
+                            isInvalid={!!errors.password}
                         />
-                        <p className="text-danger">{errors.password?.message}</p>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.password?.message}
+                        </Form.Control.Feedback>
+                        {/* <p className="text-danger">{errors.password?.message}</p> */}
                     </Form.Group>
 
 
 
                 </Row>
                 <Row>
-                    <Col className="d-flex justify-content-center gap-3">
+                    <Col className=" mt-3 d-flex justify-content-center gap-3">
                         <CustomButton type="button" size="md" onClick={handleClear} >Clear</CustomButton>
                         <CustomButton type="submit" size="md" variant="success" disabled={isLoading} >{isLoading ? "Signing up..." : "Submit"}</CustomButton>
                     </Col>

@@ -1,11 +1,10 @@
 .navbar {
-    width: 100%;
-   padding: 1rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: 600;
-    background-color: #f3efef;
-    margin-bottom: 0.3rem;
-  }
-  
+  width: 100%;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  background-color: #f3efef;
+  margin-bottom: 0.3rem;
+}
