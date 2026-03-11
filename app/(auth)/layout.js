@@ -1,8 +1,7 @@
 import { Fira_Sans } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./globals.css";
-import NavBar from "@/Components/layout/Navbar";
-import FooterBD from "@/Components/layout/Footer";
+import "../globals.css";
+
 
 const firaSans = Fira_Sans({
   subsets: ["latin"],
@@ -18,9 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       
       <body className={`${firaSans.className}`}>
-        <NavBar/>
+        
         {children}
-        <FooterBD/>
+        
       </body>
     </html>
   );
