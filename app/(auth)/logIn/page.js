@@ -21,6 +21,11 @@ export default function LogIn() {
         try {
             const response = await LoginUser(data);
             console.log("Login Successful", response);
+            await Swal.fire({
+                title: " Login SuccessFul",
+                text: "Congratulations!",
+                icon: "success"
+            })
 
         } catch (error) {
             console.error("Login Failed", error)

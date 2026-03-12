@@ -74,9 +74,83 @@ export default function page() {
                         <Form.Control.Feedback type="invalid">
                             {errors.username?.message}
                         </Form.Control.Feedback>
-
-                        {/* <p className="text-danger">{errors.username?.message}</p> */}
                     </Form.Group>
+                    <Form.Group className="mb-2">
+                        <Form.Label>Profession*</Form.Label>
+                        <Form.Select size="md"  {...register("profession")} isInvalid={!!errors.profession}>
+                            <option value="">Select your profession</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="student">Student</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="engineer">Engineer</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="pilot">Pilot</option>
+                            <option value="govtJob">GovtJob</option>
+                            <option value="defence">Defence</option>
+                            <option value="housewife">Housewife</option>
+                            <option value="lawyer">Lawyear</option>
+                            <option value="others">Others</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.profession?.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group className="mb-2">
+                        <Form.Label>Gender *</Form.Label>
+                        <Row>
+
+                            <Col xs={12} md={4} lg={4}>
+
+                                <Form.Check
+                                    inline
+                                    type="radio"
+                                    label="Male"
+                                    value="male"
+                                    isInvalid={!!errors.gender}
+                                    {...register("gender", { required: "Gender is required" })}
+                                />
+                            </Col>
+                            <Col xs={12} md={4} lg={4}>
+                                <Form.Check
+                                    inline
+                                    type="radio"
+                                    label="Female"
+                                    value="female"
+                                    isInvalid={!!errors.gender}
+                                    {...register("gender", { required: "Gender is required" })}
+                                />
+                            </Col>
+                            <Col xs={12} md={4} lg={4}>
+                                <Form.Check
+                                    inline
+                                    type="radio"
+                                    label="Others"
+                                    value="others"
+                                    isInvalid={!!errors.gender}
+                                    {...register("gender", { required: "Gender is required" })}
+                                />
+                            </Col>
+                        </Row>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.gender?.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group className="mb-2">
+                        <Form.Label>Date of Birth *</Form.Label>
+
+                        <Form.Control
+                            type="date"
+                            {...register("dob")}
+                            isInvalid={!!errors.dob}
+                        />
+
+                        <Form.Control.Feedback type="invalid">
+                            {errors.dob?.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
                     <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Email *</Form.Label>
                         <Form.Control
@@ -89,7 +163,7 @@ export default function page() {
                         <Form.Control.Feedback type="invalid">
                             {errors.email?.message}
                         </Form.Control.Feedback>
-                        {/* <p className="text-danger">{errors.email?.message}</p> */}
+
                     </Form.Group>
                     <Form.Group as={Col} className="mb-2" xs={12} md={12} lg={12}>
                         <Form.Label>Password *</Form.Label>
@@ -117,7 +191,7 @@ export default function page() {
                 </Row>
 
             </Form>
-        </Container>
+        </Container >
 
     );
 }
