@@ -9,6 +9,10 @@ import { signUpUser } from "@/Components/Auth/authService";
 import Swal from 'sweetalert2'
 import { useState } from "react";
 
+
+//When i will click the Brand text it will reload the page because the root folder is in Main route group.
+//when the any page.js don't share the same layout.js then the NextJs web will reload . 
+// same layout.js share by many page.js they will not reload to route to new page just the inside content will chnage  
 export default function page() {
     const [isLoading, setIsLoading] = useState(false);
     const {

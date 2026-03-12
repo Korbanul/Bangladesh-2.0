@@ -12,7 +12,7 @@ export default function NavBar() {
 
             <Navbar expand="lg" className="navbar " sticky='top' >
                 <Container fluid>
-                    <Navbar.Brand  > Bangladesh 2.0</Navbar.Brand>
+                <Navbar.Brand  as={Link} href="/" className="text-decoration-none" style={{color:"black"}}> Bangladesh 2.0</Navbar.Brand>
 
                     <Nav >
                         <Link href="/signUp" className="text-decoration-none">
