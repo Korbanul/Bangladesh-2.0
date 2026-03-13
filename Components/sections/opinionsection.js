@@ -3,7 +3,9 @@ import { Container, Dropdown, Table } from "react-bootstrap";
 import "@/style/customDropdown.css"
 export default function OpinionSection() {
     return (
-        <section>
+        <section className="px-4">
+        {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
+
             <Container className="OpinionSection">
                 <Table responsive >
                     <thead className="customTableHead">

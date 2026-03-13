@@ -41,7 +41,7 @@ export default function LogIn() {
         reset();
     }
     return (
-        <div className="LoginPage">
+        <div className="LoginPage px-3">
             <div className="LoginBox p-5">
                 <Form onSubmit={handleSubmit(handleLogin)}>
                     <h2 className="text-center">LogIn</h2>

@@ -5,9 +5,10 @@ import Image from "next/image";
 import '@/style/heroSection.css'
 export default function HeroSection() {
     return (
-        <section>
-            <Container className="heroSection">
-                <Row className="align-items-center">
+        <section className="px-4"> 
+        {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
+            <Container className="heroSection ">
+                <Row className="align-items-center ">
                     <Col xs={12} sm={6} md={6}>
                         <small style={{ fontWeight: 600, color: "gray" }}>Bangladesh 2.0</small>
                         <h2>Idea, innovation, vision and challenges in New Bangladesh.</h2>

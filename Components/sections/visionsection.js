@@ -6,9 +6,11 @@ import quote from "@/public/quote.svg"
 import "@/style/Quoteicon.css"
 export default function VisionofBD() {
     return (
-        <section>
+        <section className="px-4">
+            {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
+
             <Container className="mb-5">
-                <Row className="w-100">
+                <Row className="w-100 ps-2">
                     <Col className="mb-3 w-100" xs={12} sm={6} md={4} >
                         <h1 className="mb-3"> The Vision of Future</h1>
                         <p>
@@ -31,9 +33,9 @@ export default function VisionofBD() {
                 </Row>
 
                 <Row>
-                    <Col style={{ backgroundColor:"#FFFFFF",borderRadius:"1rem",padding:"1rem 1rem"}}>
+                    <Col style={{ backgroundColor: "#FFFFFF", borderRadius: "1rem", padding: "1rem 1rem" }}>
                         <p style={{ opacity: "60%" }}>
-                            <Image src={quote} alt="Quote icon" className="quote-icon "/>
+                            <Image src={quote} alt="Quote icon" className="quote-icon " />
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis quas,
                             ducimus labore sequi quos deserunt optio id repellendus tempora veniam amet
                             porro corporis exercitationem numquam debitis culpa laudantium odio, velit

@@ -4,7 +4,9 @@ import PillarsCard from "../cards/pillarsCard";
 import '@/style/pillersection.css'
 export default function PillersofBD() {
     return (
-        <section>
+        <section className="px-4">
+        {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
+
             <Container className="Pillersection">
                 
                 <Row className="w-100">

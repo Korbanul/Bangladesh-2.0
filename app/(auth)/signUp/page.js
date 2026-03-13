@@ -55,7 +55,7 @@ export default function page() {
     return (
 
 
-        <Container className="SignupPage">
+        <Container className="SignupPage ">
 
 
             <Form onSubmit={handleSubmit(onsubmit)} className="SignupBox ">
