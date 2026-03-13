@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://bangladesh-20-backend-production.up.railway.app/";
 export async function apiClient(endpoint,options={}) {
     const response = await fetch(`${API_BASE_URL}${endpoint}`,
         {
