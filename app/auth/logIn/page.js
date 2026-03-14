@@ -77,7 +77,7 @@ export default function LogIn() {
                     </Row>
                     <Row>
                         <Col className=" mb-2 mt-3 d-flex justify-content-center" xl="12" xs="12" sm="12" md="12" >
-                            <CustomButton variant="success" size="lg" type="submit">Login</CustomButton>
+                            <CustomButton variant="success" size="lg" type="submit" className="w-100">Login</CustomButton>
                         </Col>
                     </Row>
                 </Form>

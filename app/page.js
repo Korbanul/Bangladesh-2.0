@@ -1,3 +1,5 @@
+import FooterBD from "@/Components/layout/Footer";
+import NavBar from "@/Components/layout/Navbar";
 import DonateSection from "@/Components/sections/DonateSection";
 import HeroSection from "@/Components/sections/herosection";
 import OpinionSection from "@/Components/sections/opinionsection";
@@ -9,13 +11,15 @@ import VisionofBD from "@/Components/sections/visionsection";
 export default function Home() {
   return (
     <>
-        <HeroSection/>
-        <PillersofBD/>
-        <VisionofBD/>
-        <OpinionSection/>
-        <RecentNewSection/>
-        <DonateSection/>
-        <SubscribeSection/>
+      <NavBar />
+      <HeroSection />
+      <PillersofBD />
+      <VisionofBD />
+      <OpinionSection />
+      <RecentNewSection />
+      <DonateSection />
+      <SubscribeSection />
+      <FooterBD />
     </>
   );
 }

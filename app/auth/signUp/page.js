@@ -184,7 +184,7 @@ export default function page() {
                 </Row>
                 <Row>
                     <Col className=" mt-3 d-flex justify-content-center gap-3">
-                        <CustomButton type="button" size="md" onClick={handleClear} >Clear</CustomButton>
+                        <CustomButton type="button" size="md" onClick={handleClear} variant="danger" >Clear</CustomButton>
                         <CustomButton type="submit" size="md" variant="success" disabled={isLoading} >{isLoading ? "Signing up..." : "Submit"}</CustomButton>
                     </Col>
 

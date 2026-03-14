@@ -15,7 +15,7 @@ export default function NavBarWithLogin() {
                 <Navbar.Brand  as={Link} href="/" className="text-decoration-none" style={{color:"black"}}> Bangladesh 2.0</Navbar.Brand>
 
                     <Nav >
-                        <Link href="/logIn" className="text-decoration-none">
+                        <Link href="./logIn" className="text-decoration-none">
                             <CustomButton variant="outline-success" size="md" /* onClick={() => setshowSignup(true)}*/>
                                 LogIn
                             </CustomButton>

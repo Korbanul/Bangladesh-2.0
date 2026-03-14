@@ -15,13 +15,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      
-      <body className={`${firaSans.className}`}>
-        <NavBarWithLogin/>
-        {children}
-        
-      </body>
-    </html>
+    <div>
+      <NavBarWithLogin />
+      {children}
+
+    </div>
   );
 }
