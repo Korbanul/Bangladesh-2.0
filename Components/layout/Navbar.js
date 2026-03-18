@@ -26,7 +26,7 @@ export default function NavBar() {
 
                     ) : pathname === "/auth/signup" ? (
                         <Nav >
-                            <Link href="auth/login" className="text-decoration-none">
+                            <Link href="/auth/login" className="text-decoration-none">
                                 <CustomButton variant="outline-success" size="md" /* onClick={() => setshowSignup(true)}*/>
                                     LogIn
                                 </CustomButton>
