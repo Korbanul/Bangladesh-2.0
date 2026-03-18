@@ -1,0 +1,8 @@
+.item:hover{
+   background-color: #dbdbdb;
+
+}
+.navbar-search {
+   max-width: 400px !important;
+   flex: 1 !important;
+}

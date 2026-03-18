@@ -19,3 +19,13 @@ export const loginSchema = z.object({
     username: z.string().min(3, "Username required"),
     password: z.string().min(6, "Password must be at least 6 characters")
 });
+
+export const dashboardSearch=z.object({
+    dsearch:z.string().min(1,"Empty text cannot be searched")
+})
+
+export const donationinputval=z.object({
+    donationamount: z.number()
+    .int("Amount must be a whole number (no decimals)")
+    .min(20, "Minimum Amount is 20 taka")
+});

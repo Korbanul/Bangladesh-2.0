@@ -8,7 +8,7 @@ export default function NewsCard({ News }) {
         <Card className="w-100 eachcard">
             <Row>
                 <Col md={4}>
-                    <Card.Img src="./satellite.png" alt="Satelite Image"  className="CardImg"/>
+                    <Card.Img src="/satellite.png" alt="Satelite Image"  className="CardImg"/>
 
                 </Col>
 

@@ -7,8 +7,10 @@ import { useForm } from "react-hook-form";
 import "@/style/LoginPage.css"
 import { LoginUser } from "@/Components/Auth/authService";
 import Swal from 'sweetalert2'
+import { useRouter } from "next/navigation";
 
 export default function LogIn() {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -26,6 +28,8 @@ export default function LogIn() {
                 text: "Congratulations!",
                 icon: "success"
             })
+            reset();
+            router.push("../user/dashboard")
 
         } catch (error) {
             console.error("Login Failed", error)
@@ -36,9 +40,11 @@ export default function LogIn() {
             })
 
         }
-
-
         reset();
+        // router.push("../user/dashboard")
+
+
+
     }
     return (
         <div className="LoginPage px-3">
@@ -53,7 +59,7 @@ export default function LogIn() {
                                 placeholder="Enter your username"
                                 {...register("username")}
                                 isInvalid={!!errors.username}  //!value   → converts to opposite boolean
-                                                               //!!value  → converts back to actual boolean
+                            //!!value  → converts back to actual boolean
                             />
                             <Form.Control.Feedback type="invalid">
                                 {errors.username?.message}

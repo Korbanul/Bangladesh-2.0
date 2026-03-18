@@ -1,0 +1,4 @@
+.custom-user-table {
+    border-collapse: separate;
+    border-spacing: 0 5px; /* Adds space between rows if you want row separation */
+  }

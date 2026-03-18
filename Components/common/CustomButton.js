@@ -9,6 +9,7 @@ export default function CustomButton({ children, variant = "success", size, onCl
             onClick={onClick}
             type={type}
             className={`d-flex align-items-center justify-content-center ${className}`}
+            {...props}//this will add all other props that added by user or classes 
         >
             {children}
         </Button>

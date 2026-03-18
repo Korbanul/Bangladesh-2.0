@@ -1,0 +1,17 @@
+.rounded-4 { border-radius: 1rem !important; }
+.transition-all { transition: all 0.3s ease-in-out; }
+.hover-zoom:hover { transform: scale(1.02); }
+
+.modifyDonationbutton{
+    background-color: white;
+    width: 100%;
+}
+.modifyDonationbutton:hover{
+    background-color: #C6E4D6;
+    color: rgb(65, 64, 64);
+}
+.amountinput{
+    align-items: center;
+    text-align: center;
+    
+}

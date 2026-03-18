@@ -1,0 +1,62 @@
+/* Sidebar Container */
+.sidebarBox {
+    width: 260px;
+    transition: all 0.3s ease;
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    border-right: 1px solid #E5E7EB;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Collapsed State */
+.sidebarBox.collapsed {
+    width: 85px;
+}
+
+/* Sidebar Links */
+.sidebarlink {
+    width: 100%;
+    padding: 12px 14px;
+    text-decoration: none;
+    color: #6B7280;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    font-weight: 500;
+}
+
+.sidebarlink:hover {
+    background-color: #dbdbdb;
+    color: black;
+    transform: translateX(6px);
+    box-shadow: 0 4px 12px rgba(67, 56, 202, 0.2); 
+}
+
+/* Active Link */
+.activelink {
+    background-color: #7d77f1;
+    color: #ffffff !important;
+    border-radius: 12px;
+}
+.activelink:hover {
+    background-color: #4F46E5;
+    color: #ffffff !important;
+    border-radius: 12px;
+}
+
+/* Chevron Icon */
+.Chevron {
+    margin-left: auto;
+    opacity: 0.5;
+    transition: transform 0.2s ease;
+}
+
+/* Icon spacing */
+.sidebarlink span:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
