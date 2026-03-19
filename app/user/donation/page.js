@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import CustomButton from "@/Components/common/CustomButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { donationinputval } from "@/Components/Validations/AuthSchema";
-import { Download } from "lucide-react";
 import DonationHistory from "@/Components/userDashboardComponents/table/donationHistory";
 
 export default function Donation() {
@@ -44,7 +43,7 @@ export default function Donation() {
 
                             }}>
                             <Image
-                                src={DonationHero}
+                                src="/donationHeroImage.jpg"
                                 alt="Support Bangladesh"
                                 fill
                                 priority
