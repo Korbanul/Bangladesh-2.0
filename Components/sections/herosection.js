@@ -19,7 +19,7 @@ export default function HeroSection() {
                     </Col >
                     <Col md={6} xs={12} sm={6} >
                         <Image
-                            src={Flag}
+                            src="/image.png"
 
                             alt="Bangladesh Flag"
                             className="img-fluid"
