@@ -5,8 +5,8 @@ import Image from "next/image";
 import '@/style/heroSection.css'
 export default function HeroSection() {
     return (
-        <section className="px-4"> 
-        {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
+        <section className="px-4">
+            {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
             <Container className="heroSection ">
                 <Row className="align-items-center ">
                     <Col xs={12} sm={6} md={6}>
@@ -19,12 +19,16 @@ export default function HeroSection() {
                     </Col >
                     <Col md={6} xs={12} sm={6} >
                         <Image
-                            src="/image.png"
-
+                            // src={Flag}
+                            src="/image.png"          // Use the string path directly
                             alt="Bangladesh Flag"
+                            width={600}               // You MUST provide width/height when using a string path
+                            height={400}
                             className="img-fluid"
+                            priority
+
                             quality={100}
-                           
+
                         />
                     </Col>
                 </Row>
