@@ -9,14 +9,14 @@ export async function signUpUser(data){
 export async function LoginUser(data){
     return apiClient("/auth/login",{
         method:"POST",
-        credentials: "include", //This line set the cookie 
+        // credentials: "include", //This line set the cookie 
         body:JSON.stringify(data) 
     });
 }
 export async function LogoutUser(){
     return apiClient("/auth/logout",{
         method:"POST",
-        credentials: "include", //This line set the cookie 
+        // credentials: "include", //This line set the cookie 
         
     });
 }
