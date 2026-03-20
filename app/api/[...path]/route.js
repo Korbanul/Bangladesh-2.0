@@ -2,13 +2,13 @@ import { NextResponse } from "next/server";
 console.log("🔥 BFF HIT");
 const BACKEND_URL = "https://bangladesh-20-backend-production.up.railway.app";
 
-// export async function POST(req, { params }) {
-//   return handleRequest(req, params);
-// }
+export async function POST(req, { params }) {
+  return handleRequest(req, params);
+}
 
-// export async function GET(req, { params }) {
-//   return handleRequest(req, params);
-// }
+export async function GET(req, { params }) {
+  return handleRequest(req, params);
+}
 
 // async function handleRequest(req, params) {
 //   try {
