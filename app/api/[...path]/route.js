@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-
+console.log("🔥 BFF HIT");
 const BACKEND_URL = "https://bangladesh-20-backend-production.up.railway.app";
 
 export async function POST(req, { params }) {
