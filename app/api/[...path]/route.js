@@ -3,11 +3,13 @@ console.log("🔥 BFF HIT");
 const BACKEND_URL = "https://bangladesh-20-backend-production.up.railway.app";
 
 export async function POST(req, { params }) {
-  return handleRequest(req, params);
+  const resolvedParams = await params;
+  return handleRequest(req, resolvedParams);
 }
 
 export async function GET(req, { params }) {
-  return handleRequest(req, params);
+  const resolvedParams = await params;
+  return handleRequest(req, resolvedParams);
 }
 
 // async function handleRequest(req, params) {
