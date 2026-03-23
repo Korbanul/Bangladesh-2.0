@@ -19,4 +19,5 @@ export async function LogoutUser(){
         // credentials: "include", //This line set the cookie 
         
     });
+
 }

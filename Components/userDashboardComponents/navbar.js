@@ -122,7 +122,7 @@ export default function UserDashboardNavbar() {
                             <Dropdown.Menu className="shadow-sm border-0 mt-2">
                                 <Dropdown.Header>Account Settings</Dropdown.Header>
 
-                                <Dropdown.Item as={Link} href="/dashboard/profile" className="item">My Profile</Dropdown.Item>
+                                <Dropdown.Item as={Link} href="/user/profile" className="item">My Profile</Dropdown.Item>
                                 <Dropdown.Item as={Link} href="/dashboard/settings" className="item">Settings</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout} className="text-danger item">
