@@ -19,11 +19,8 @@ export default function HeroSection() {
                     </Col >
                     <Col md={6} xs={12} sm={6} >
                         <Image
-                            // src={Flag}
-                            src="/image.png"          // Use the string path directly
+                            src={Flag}                          
                             alt="Bangladesh Flag"
-                            width={600}               // You MUST provide width/height when using a string path
-                            height={400}
                             className="img-fluid"
                             priority
 
