@@ -7,7 +7,7 @@ const nextConfig = {
         {
             source: "/api/:path*",
             // destination: "https://bangladesh-20-backend-production.up.railway.app/:path*"
-            destination: "bangladesh-20-backend-production-07c7.up.railway.app/:path*"
+            destination: "https://bangladesh-20-backend-production-07c7.up.railway.app/:path*"
             // destination: "http://localhost:8080/:path*" //For local use
         }
     ]
