@@ -19,7 +19,7 @@ export function middleware(request) {
 export const config = {
   matcher: [
     "/auth/:any*" 
-    ,"/user/:any*"   //for use in local
+    ,"/user/:any*" 
 
   ]
 }

@@ -1,10 +1,12 @@
 "use client";
-import { Container, Row, Col, Card, Button, ListGroup, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, ListGroup, Image, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { userProfile } from "@/Components/Auth/userService"; // for api call
+import { updateProfile, userProfile } from "@/Components/Auth/userService"; // for api call
 import Swal from "sweetalert2";
 import { LogoutUser } from "@/Components/Auth/authService";
 import { useRouter } from "next/navigation";
+import InfoCard from "@/Components/userDashboardComponents/profile/infoCard";
+import EditInfoCard from "@/Components/userDashboardComponents/profile/editInfoCard";
 
 
 
@@ -37,13 +39,45 @@ export default function ProfilePage() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isEditing, setisEditing] = useState(false);
+
+
+
+
 
     useEffect(() => {
-        userProfile()
-            .then(setUser)
-            .catch((err) => setError(err.message))
-            .finally(() => setLoading(false));
+        const fetchUser = async () => {
+            try {
+                const response = await userProfile();
+                setUser(response);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchUser();
     }, []);
+
+
+
+    const handleCancle = () => {
+        setisEditing(false);
+
+    }
+    const handleSave = async (formData) => {
+        try {
+            console.log(formData);
+            const updated = await updateProfile(formData); // API call
+            const response = await userProfile();
+            setUser(response);                              // update with fresh data
+            setisEditing(false);
+            await Swal.fire({ title: "Profile Updated", icon: "success" });
+        } catch (err) {
+            await Swal.fire({ title: "Update Failed", text: err.message, icon: "error" });
+        }
+    };
 
     if (loading) return <p className="text-center mt-5">Loading...</p>;
     if (error) return <p className="text-center mt-5 text-danger">{error}</p>;
@@ -51,10 +85,10 @@ export default function ProfilePage() {
     // console.log(user);
 
     return (
-        <Container className="py-5">
+        <Container className="py-2">
             <Row>
                 {/* Sidebar */}
-                <Col lg={4} className="mb-4">
+                <Col lg={4} className="mb-2">
                     <Card className="border-0 shadow-sm text-center p-3">
                         <Card.Body>
                             <div
@@ -97,26 +131,11 @@ export default function ProfilePage() {
 
                 {/* Main Info */}
                 <Col lg={8}>
-                    <Card className="border-0 shadow-sm">
-                        <Card.Header className="bg-white py-3 d-flex justify-content-between align-items-center">
-                            <h5 className="mb-0 fw-bold">Personal Information</h5>
-                            <Button variant="link" className="text-decoration-none p-0">Edit</Button>
-                        </Card.Header>
-                        <Card.Body>
-                            {[
-                                ["Username", user.username],
-                                ["Email", user.email],
-                                ["Profession", user.profession],
-                                ["Gender", user.gender],
-                                ["Date of Birth", user.dob],
-                            ].map(([label, value]) => (
-                                <Row className="mb-3" key={label}>
-                                    <Col sm={4} className="text-muted">{label}</Col>
-                                    <Col sm={8} className="fw-semibold">{value || "—"}</Col>
-                                </Row>
-                            ))}
-                        </Card.Body>
-                    </Card>
+                    {isEditing ?
+                        <EditInfoCard user={user} onSave={handleSave} onCancel={handleCancle} />
+                        :
+                        <InfoCard user={user} onEdit={() => { setisEditing(true) }} />
+                    }
                     <br></br>
                     <Card className="border-0 shadow-sm">
                         <Card.Header className="bg-white py-3">
