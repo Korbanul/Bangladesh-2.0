@@ -66,7 +66,7 @@ export default function ProfilePage() {
         setisEditing(false);
 
     }
-    const handleSave = async (formData) => {
+    const handleSave = async (formData) => { //This handleSave will auto get the form data from editInfoCard
         try {
             console.log(formData);
             const updated = await updateProfile(formData); // API call
@@ -75,7 +75,7 @@ export default function ProfilePage() {
             setisEditing(false);
             await Swal.fire({ title: "Profile Updated", icon: "success" });
         } catch (err) {
-            await Swal.fire({ title: "Update Failed", text: err.message, icon: "error" });
+            await Swal.fire({ title: "Update Failed", text: error.errorMessage, icon: "error" });
         }
     };
 
@@ -132,7 +132,7 @@ export default function ProfilePage() {
                 {/* Main Info */}
                 <Col lg={8}>
                     {isEditing ?
-                        <EditInfoCard user={user} onSave={handleSave} onCancel={handleCancle} />
+                        <EditInfoCard user={user} onSave={handleSave} onCancel={handleCancle} /> // this onSave 
                         :
                         <InfoCard user={user} onEdit={() => { setisEditing(true) }} />
                     }

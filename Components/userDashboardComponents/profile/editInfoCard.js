@@ -27,10 +27,13 @@ export default function EditInfoCard({ user, onSave, onCancel }) {
             <Card.Header className="bg-white py-3 d-flex justify-content-between align-items-center">
                 <h5 className="mb-0 fw-bold">Edit Information</h5>
                 <div className="d-flex gap-2">
-                    {/* onSave and onCancle are the parent State onclick it will set true in the Sate */}
+                    {/* onSave=hadleSave and onCancle=handleCancle are the parent State onclick it will call the handle from the parent
+                        when press save button it will call handleSubmit and inside that onSave and onSave=hadleSave. 
+                        So when click save it will send forms data to the handeleSave. /profile/page.js is parent
+                    */}
                     
                     <Button size="sm" onClick={handleSubmit(onSave)}  disabled={!isDirty}> 
-                        {/* if no chnaged in field means is dirty=ture then the save button is disabled */}
+                        {/* if no chnaged in field means is dirty=false then the save button is disabled */}
                         Save
                     </Button>
                     <Button variant="danger" size="sm" onClick={onCancel}>

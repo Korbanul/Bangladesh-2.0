@@ -41,7 +41,7 @@ export default function page() {
             console.error("SignUp Failed", error)
             await Swal.fire({
                 title: "Failed",
-                text: error.message || "Currently Can't Create Account",
+                text: error.errorMessage || "Currently Can't Create Account",
                 icon: "error"
             })
         }

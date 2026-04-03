@@ -33,15 +33,14 @@ export default function LogIn() {
 
         } catch (error) {
             console.error("Login Failed", error)
-            await Swal.fire({
+            await Swal.fire({ 
                 title: " Login Failed",
-                text: error.message,
+                text: error.errorMessage||"Server is not Connected",
                 icon: "error"
             })
 
         }
-        // reset();
-        // router.push("../user/dashboard")
+        
 
 
 

@@ -9,10 +9,11 @@ export async function apiClient(endpoint,options={}) {
             ...options
         }
     );
-    if(!response.ok){
-        throw new Error("API request failed");
-    }
+    const responseData = await response.json();
 
-    return response.json();
+    if (!response.ok) {
+        throw responseData;  // ← throw the plain object {statusCode, error, errorMessage, timeStamp}
+    }
+    return responseData;
 
 }
