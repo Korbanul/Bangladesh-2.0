@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Dropdown, Form, Image, Navbar, Container, Stack, Badge, Button, OverlayTrigger, Tooltip, Offcanvas } from "react-bootstrap";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Search, Bell, Menu, ChevronRight, LayoutDashboard, Newspaper, HeartHandshake, Images } from "lucide-react";
+import { Search, Bell, Menu, ChevronRight, LayoutDashboard, Newspaper, HeartHandshake, Images, User2 } from "lucide-react";
 import { dashboardSearch } from "../Validations/AuthSchema";
 import "@/style/dashboard/navbar.css"
 import Swal from "sweetalert2";
@@ -11,14 +11,23 @@ import { LogoutUser } from "../Auth/authService";
 import { usePathname, useRouter } from "next/navigation";
 import CustomButton from "../common/CustomButton";
 import { useState } from "react";
+import { useAuth } from "@/app/context/authContext";
 
 
 export default function UserDashboardNavbar() {
+    const{user,isAdmin}=useAuth();
     const navItems = [
         { name: 'Dashboard', href: '/user/dashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'News', href: '/user/news', icon: <Newspaper size={20} /> },
         { name: 'Donation', href: '/user/donation', icon: <HeartHandshake size={20} /> },
         { name: 'Expole', href: '/user/explore', icon: <Images size={20} /> }
+    ];
+    const adminnavItems = [
+        { name: 'Admin Dashboard', href: '/admin/Dashboard', icon: <LayoutDashboard size={20} /> },
+        { name: 'Manage News', href: '/admin/manageNews', icon: <Newspaper size={20} /> },
+        { name: 'Manage Donation', href: '/admin/manageDonation', icon: <HeartHandshake size={20} /> },
+        { name: 'Manage Expole', href: '/admin/manageExplore', icon: <Images size={20} /> },
+        { name: 'Manage Users', href: '/admin/manageUser', icon: <User2 size={20} /> }
     ];
     const router = useRouter();
     const pathname = usePathname();
@@ -51,7 +60,7 @@ export default function UserDashboardNavbar() {
             console.error("Logout Failed", error)
             await Swal.fire({
                 title: " Logout Failed",
-                text: error.message,
+                text: error.errorMessage,
                 icon: "error"
             })
 
@@ -65,7 +74,7 @@ export default function UserDashboardNavbar() {
                 <Container fluid>
 
                     <Navbar.Text className="d-none d-md-block fw-medium">
-                        Hello, <span className="text-primary">Shanto</span>
+                        Hello, <span className="text-primary">{user?.username}</span>
                     </Navbar.Text>
 
 
@@ -122,7 +131,7 @@ export default function UserDashboardNavbar() {
                             <Dropdown.Menu className="shadow-sm border-0 mt-2">
                                 <Dropdown.Header>Account Settings</Dropdown.Header>
 
-                                <Dropdown.Item as={Link} href="/user/profile" className="item">My Profile</Dropdown.Item>
+                                <Dropdown.Item as={Link} href={isAdmin() ? "/admin/profile":"/user/profile"} className="item">My Profile</Dropdown.Item>
                                 <Dropdown.Item as={Link} href="/dashboard/settings" className="item">Settings</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout} className="text-danger item">
@@ -140,7 +149,7 @@ export default function UserDashboardNavbar() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className="d-flex flex-column">
-                        {navItems.map((item) => {
+                        {(isAdmin() ? adminnavItems:navItems).map((item) => {
                             const isActive = pathname === item.href;
                             return (
                                 <Link

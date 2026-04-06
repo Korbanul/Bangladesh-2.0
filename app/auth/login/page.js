@@ -8,8 +8,10 @@ import "@/style/LoginPage.css"
 import { LoginUser } from "@/Components/Auth/authService";
 import Swal from 'sweetalert2'
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/authContext";
 
 export default function LogIn() {
+    const {isAdmin,refreshUser}=useAuth();
     const router = useRouter();
     const {
         register,
@@ -22,6 +24,7 @@ export default function LogIn() {
     const handleLogin = async (data) => {
         try {
             const response = await LoginUser(data);
+            const userData = await refreshUser();
             console.log("Login Successful", response);
             await Swal.fire({
                 title: " Login SuccessFul",
@@ -29,7 +32,13 @@ export default function LogIn() {
                 icon: "success"
             })
             reset();
-            router.push("../user/dashboard")
+            // {isAdmin()? (router.push("../admin/dashboard")) : (router.push("../user/dashboard"))}
+            if (userData?.roles?.includes("ROLE_ADMIN")) {
+                router.push("/admin/dashboard");
+            } else {
+                router.push("/user/dashboard");
+            }
+            
 
         } catch (error) {
             console.error("Login Failed", error)

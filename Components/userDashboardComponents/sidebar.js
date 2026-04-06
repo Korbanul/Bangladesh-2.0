@@ -1,22 +1,33 @@
 "use client"
-import { ChevronRight, CurrencyIcon, HeartHandshake, Images, LayoutDashboard, Menu, Newspaper, PictureInPicture } from "lucide-react";
+import { ChevronRight, CurrencyIcon, HeartHandshake, Images, LayoutDashboard, Menu, Newspaper, PictureInPicture, User, User2 } from "lucide-react";
 import Link from "next/link";
 import "@/style/dashboard/sidebar.css"
 import { useEffect, useState } from "react";
 import CustomButton from "../common/CustomButton";
 import { usePathname } from "next/navigation";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useAuth } from "@/app/context/authContext";
 
 export default function Sidebar() {
     const [isCollapse, setCollapse] = useState(false);
     const [ismobile, setmobile] = useState(false);
     const pathname = usePathname();
 
+    const {isAdmin}= useAuth();
+
+    
     const navItems = [
         { name: 'Dashboard', href: '/user/dashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'News', href: '/user/news', icon: <Newspaper size={20} /> },
         { name: 'Donation', href: '/user/donation', icon: <HeartHandshake size={20} /> },
         { name: 'Expole', href: '/user/explore', icon: <Images size={20} /> }
+    ];
+    const adminnavItems = [
+        { name: 'Admin Dashboard', href: '/admin/dashboard', icon: <LayoutDashboard size={20} /> },
+        { name: 'Manage News', href: '/admin/manageNews', icon: <Newspaper size={20} /> },
+        { name: 'Manage Donation', href: '/admin/manageDonation', icon: <HeartHandshake size={20} /> },
+        { name: 'Manage Expole', href: '/admin/manageExplore', icon: <Images size={20} /> },
+        { name: 'Manage Users', href: '/admin/manageUser', icon: <User2 size={20} /> }
     ];
     //Auto-collapse logic for small screens
     useEffect(() => {
@@ -61,7 +72,7 @@ export default function Sidebar() {
             </div>
 
             <div className="d-flex flex-column align-items-stretch mt-4" >
-                {navItems.map((item) => {
+                {(isAdmin() ? adminnavItems:navItems).map((item) => {
                     const isActive = pathname === item.href;
 
                     const LinkContent = (

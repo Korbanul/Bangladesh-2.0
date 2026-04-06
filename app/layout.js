@@ -4,6 +4,7 @@ import "./globals.css";
 
 import NavBar from "@/Components/layout/Navbar";
 import FooterBD from "@/Components/layout/Footer";
+import AuthContextProvider from "./context/authContext";
 
 
 const firaSans = Fira_Sans({
@@ -20,7 +21,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body className={`${firaSans.className}`}>
-        {children}
+        <AuthContextProvider>
+          {children}
+        </AuthContextProvider>
+
       </body>
     </html>
   );
