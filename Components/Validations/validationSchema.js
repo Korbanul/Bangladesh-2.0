@@ -13,3 +13,12 @@ export const editProfile = z.object({
     
     
 })
+
+export const adminDashboardUserSearch=z.object({
+    searchUser:z
+    .string()
+    .max(100, "Search too long")
+    .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters") // blocks < > ' " ; --
+})
+
+

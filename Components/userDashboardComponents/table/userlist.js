@@ -20,9 +20,7 @@ export default function UsersPage() {
                         <h1 className="fw-bold h3 mb-1">Team Members</h1>
                         <p className="text-muted mb-0">Manage your team members and their account permissions.</p>
                     </div>
-                    <button className="btn btn-dark d-flex align-items-center gap-2 px-4 py-2 mt-3 mt-md-0 rounded-pill">
-                        <UserPlus size={18} /> Add Member
-                    </button>
+                    
                 </div>
 
                 {/* --- Filter & Search Bar --- */}

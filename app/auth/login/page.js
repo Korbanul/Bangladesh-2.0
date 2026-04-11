@@ -2,16 +2,20 @@
 import CustomButton from "@/Components/common/CustomButton";
 import { loginSchema } from "@/Components/Validations/AuthSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "@/style/LoginPage.css"
 import { LoginUser } from "@/Components/Auth/authService";
 import Swal from 'sweetalert2'
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/app/context/authContext";
+import { useState } from "react";
+import { Eye, EyeClosed } from "lucide-react";
+import { email } from "zod";
 
 export default function LogIn() {
-    const {isAdmin,refreshUser}=useAuth();
+    const { isAdmin, refreshUser } = useAuth();
+    const [showPassword, setshowpassword ] = useState(false);
     const router = useRouter();
     const {
         register,
@@ -23,7 +27,11 @@ export default function LogIn() {
     });
     const handleLogin = async (data) => {
         try {
-            const response = await LoginUser(data);
+            const trimmedData={...data,
+                username:data.username.trim(),
+                password:data.password.trim()
+            }
+            const response = await LoginUser(trimmedData);
             const userData = await refreshUser();
             console.log("Login Successful", response);
             await Swal.fire({
@@ -38,22 +46,23 @@ export default function LogIn() {
             } else {
                 router.push("/user/dashboard");
             }
-            
+
 
         } catch (error) {
             console.error("Login Failed", error)
-            await Swal.fire({ 
+            await Swal.fire({
                 title: " Login Failed",
-                text: error.errorMessage||"Server is not Connected",
+                text: error.errorMessage || "Server is not Connected",
                 icon: "error"
             })
 
         }
-        
+
 
 
 
     }
+    const handleShowPassword=()=>setshowpassword(prev=>!prev)
     return (
         <div className="LoginPage px-3">
             <div className="LoginBox p-5">
@@ -76,17 +85,24 @@ export default function LogIn() {
                         </Form.Group>
                         <Form.Group className="mb-3" as={Col} xl="12" xs="12" sm="12" md="12">
                             <Form.Label>Password *</Form.Label>
-                            <Form.Control
-                                type="password"
-                                placeholder="Enter your password"
-                                {...register("password")}
-                                isInvalid={!!errors.password}
-                            />
-
-                            <Form.Control.Feedback type="invalid">
-                                {errors.password?.message}
-                            </Form.Control.Feedback>
-
+                            <InputGroup>
+                                <Form.Control
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your password"
+                                    {...register("password")}
+                                    isInvalid={!!errors.password}
+                                />
+                                <InputGroup.Text
+                                onClick={handleShowPassword}
+                                 style={{ cursor: "pointer" }}
+                                 aria-label={showPassword ? "Hide password" : "Show password"}
+                                >
+                                    {showPassword ? <Eye /> : <EyeClosed />}
+                                </InputGroup.Text>
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password?.message}
+                                </Form.Control.Feedback>
+                            </InputGroup>
                         </Form.Group>
                     </Row>
                     <Row>
