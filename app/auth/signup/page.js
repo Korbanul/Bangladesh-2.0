@@ -8,6 +8,7 @@ import "../../../style/SignUpPage.css"
 import { signUpUser } from "@/Components/Auth/authService";
 import Swal from 'sweetalert2'
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 //When i will click the Brand text it will reload the page because the root folder is in Main route group.
@@ -26,17 +27,22 @@ export default function page() {
     const handleClear = () => {
         reset();
     };
+
+    const router=useRouter()
     const onsubmit = async (data) => {
         setIsLoading(true);
         try {
             const response = await signUpUser(data);
             console.log("SignUp Successful", response);
-            Swal.fire({
+           await Swal.fire({
                 title: "Success",
                 text: "Account Created",
-                icon: "success"
+                icon: "success",
+                timer:2500
             })
             handleClear()
+            router.push("./login")
+
         } catch (error) {
             console.error("SignUp Failed", error)
             await Swal.fire({

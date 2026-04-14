@@ -24,7 +24,8 @@ export default function ProfilePage() {
             console.log("Logout Successful", response);
             await Swal.fire({
                 title: " LogOut",
-                icon: "success"
+                icon: "success",
+                timer:1000
             })
             router.push("../")
 
@@ -80,7 +81,7 @@ export default function ProfilePage() {
                                 />
                             </div>
                             <Card.Title className="fw-bold">{user.username}</Card.Title>
-                            {/* ✅ Render roles array properly */}
+                            {/* Render roles array properly */}
                             <Card.Text className="text-muted small">
                                 {user.roles && Array.from(user.roles)
                                     .map(r => r.replace("ROLE_", ""))

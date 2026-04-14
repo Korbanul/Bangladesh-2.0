@@ -1,11 +1,3 @@
-// import { apiClient } from "./ApiClient";
-// export async function userList() {
-//     return apiClient("/admin/users",{
-//         method: "GET",
-//         credentials: "include",
-//     })
-
-// }
 import { apiClient } from "./ApiClient";
 
 //  Pass all query params

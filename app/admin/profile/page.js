@@ -25,7 +25,8 @@ export default function ProfilePage() {
             console.log("Logout Successful", response);
             await Swal.fire({
                 title: " LogOut",
-                icon: "success"
+                icon: "success",
+                timer:1000
             })
             router.push("../")
 

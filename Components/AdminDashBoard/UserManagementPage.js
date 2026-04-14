@@ -165,6 +165,8 @@ export default function UserManagementPage() {
                         error={error}
                         onPageChange={(newPage) => updateQuery({ page: newPage })}
                         onUserDeleted={handleUserDeleted}
+                        onPageSizeChange={(size)=>updateQuery({size:size,page:0, sortBy: "id", sortDir: "asc"})}
+
                     //this onPageChange is a function that is passed by parent to child.
                     //when chlid component has any updated data un my case, when user chnage pages then this function is called.
                     //onClick={() => onPageChange(pagination.nextPage) by this. 

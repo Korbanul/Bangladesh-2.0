@@ -15,7 +15,7 @@ import { useAuth } from "@/app/context/authContext";
 
 
 export default function UserDashboardNavbar() {
-    const{user,isAdmin}=useAuth();
+    const { user, isAdmin } = useAuth();
     const navItems = [
         { name: 'Dashboard', href: '/user/dashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'News', href: '/user/news', icon: <Newspaper size={20} /> },
@@ -52,7 +52,8 @@ export default function UserDashboardNavbar() {
             console.log("Logout Successful", response);
             await Swal.fire({
                 title: " LogOut",
-                icon: "success"
+                icon: "success",
+                timer: 1000
             })
             router.push("../")
 
@@ -81,7 +82,7 @@ export default function UserDashboardNavbar() {
                     <CustomButton
                         variant="transparent"
                         className="d-block d-sm-none"
-                        
+
                         onClick={() => setShowMobile(true)}
                     >
                         <Menu size={20} />
@@ -131,7 +132,7 @@ export default function UserDashboardNavbar() {
                             <Dropdown.Menu className="shadow-sm border-0 mt-2">
                                 <Dropdown.Header>Account Settings</Dropdown.Header>
 
-                                <Dropdown.Item as={Link} href={isAdmin() ? "/admin/profile":"/user/profile"} className="item">My Profile</Dropdown.Item>
+                                <Dropdown.Item as={Link} href={isAdmin() ? "/admin/profile" : "/user/profile"} className="item">My Profile</Dropdown.Item>
                                 <Dropdown.Item as={Link} href="/dashboard/settings" className="item">Settings</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout} className="text-danger item">
@@ -149,7 +150,7 @@ export default function UserDashboardNavbar() {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <div className="d-flex flex-column">
-                        {(isAdmin() ? adminnavItems:navItems).map((item) => {
+                        {(isAdmin() ? adminnavItems : navItems).map((item) => {
                             const isActive = pathname === item.href;
                             return (
                                 <Link

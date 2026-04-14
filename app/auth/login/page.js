@@ -37,7 +37,8 @@ export default function LogIn() {
             await Swal.fire({
                 title: " Login SuccessFul",
                 text: "Congratulations!",
-                icon: "success"
+                icon: "success",
+                timer:1500
             })
             reset();
             // {isAdmin()? (router.push("../admin/dashboard")) : (router.push("../user/dashboard"))}
