@@ -2,12 +2,23 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import CustomButton from "@/Components/common/CustomButton";
 import { Download, HeartHandshake, Image, Images, Newspaper, NewspaperIcon, PictureInPicture, PictureInPicture2 } from "lucide-react";
-import UsersPage from "@/Components/userDashboardComponents/table/userlist";
 import LastThreeNews from "@/Components/userDashboardComponents/lastThreeNews";
 import RecentDonation from "@/Components/userDashboardComponents/table/donationHistory";
+import { useDonationListContext } from "@/app/context/donationListContextProvider";
+import { userDonationHistoryList } from "@/Components/Auth/userService";
+import { useEffect } from "react";
+import UserDonationHistory from "@/Components/userDashboardComponents/table/userDonationHistory";
 
 export default function DashBoard() {
+    const { userDonationList, setuserDonationList } = useDonationListContext();
+    const fetchdonationHistoryList = async () => {
+        const list = await userDonationHistoryList()
+        setuserDonationList(list)
+    }
 
+    useEffect(() => {
+        fetchdonationHistoryList()
+    }, [])
     return (
         <section>
             <Container>
@@ -21,7 +32,7 @@ export default function DashBoard() {
                     </Col>
                     <Col sm={12} md={4} lg={4} className="text-center ">
                         <Card className='p-3  h-100' >
-                            <span><HeartHandshake size={40}  className="text-muted" /></span>
+                            <span><HeartHandshake size={40} className="text-muted" /></span>
                             <Card.Title className='display-6 fw-medium mt-3 mb-1'>$189</Card.Title>
                             <Card.Text className='text-muted fw-medium small text-uppercase ls-wide'>Donation</Card.Text>
                         </Card>
@@ -42,8 +53,7 @@ export default function DashBoard() {
                 <p className="text-muted mb-0">Show more in News Section.</p>
             </div>
             <LastThreeNews />
-            <RecentDonation />
-            {/* <UsersPage/> */}
+            <UserDonationHistory data={userDonationList} />
         </section>
     );
 }

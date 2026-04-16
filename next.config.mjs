@@ -7,7 +7,8 @@ const nextConfig = {
             // destination: "https://bangladesh-20-backend-production.up.railway.app/:path*"
             // destination: "https://bangladesh-20-backend-production-07c7.up.railway.app/:path*"
             destination: "https://bangladesh-20-backend-production.up.railway.app/:path*"
-            // destination: "http://localhost:8080/:path*" 
+            
+            // destination: "http://localhost:8080/:path*"
             
         }
     ]

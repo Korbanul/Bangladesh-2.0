@@ -38,7 +38,7 @@ export default function LogIn() {
                 title: " Login SuccessFul",
                 text: "Congratulations!",
                 icon: "success",
-                timer:1500
+                timer:1000
             })
             reset();
             // {isAdmin()? (router.push("../admin/dashboard")) : (router.push("../user/dashboard"))}

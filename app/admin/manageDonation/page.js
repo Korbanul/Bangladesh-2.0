@@ -1,5 +1,5 @@
 "use client"
-import { Col, Container, Form, FormSelect, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Form, FormSelect, Modal, Row, Table } from "react-bootstrap";
 import Image from "next/image";
 import DonationHero from "@/public/donationHeroImage.jpg";
 import "@/style/User/donation.css"
@@ -8,6 +8,12 @@ import CustomButton from "@/Components/common/CustomButton";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { donationinputval } from "@/Components/Validations/AuthSchema";
 import DonationHistory from "@/Components/userDashboardComponents/table/donationHistory";
+import { useEffect, useState } from "react";
+import { adminDashboardAddPaymentMethod } from "@/Components/Validations/validationSchema";
+import { addPaymentMethod, getDonationList, getPaymentMethodList } from "@/Components/Auth/adminService";
+import Swal from "sweetalert2";
+import { set } from "zod";
+import PaymentMethodtable from "@/Components/userDashboardComponents/table/PaymentMethodTable";
 
 export default function Donation() {
     const {
@@ -16,11 +22,67 @@ export default function Donation() {
         handleSubmit,
         formState: { errors }
     } = useForm({
-        resolver: zodResolver(donationinputval),
-        defaultValues: {
-            donationamount: 100,
-        }
+        resolver: zodResolver(adminDashboardAddPaymentMethod),
+
     })
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleAddPaymentMethodModal = () => {
+        setShowModal(true)
+    }
+
+    const handleAddPaymentMethod = async (data) => {
+        console.log(data)
+        try {
+            const payload = {
+                name: data.PaymentMethodName,
+                logoUrl: data.PaymentMethodImageLink
+            };
+            const response = await addPaymentMethod(payload);
+            fetchPaymentMethods()
+            reset()
+            setShowModal(false)
+            await Swal.fire({ title: "Payment Method Added", icon: "success" });
+        } catch (error) {
+            await Swal.fire({ title: "Payment Method Not Added", icon: "error", text: error.errorMessage || "Can't Add Method Now" });
+        };
+
+
+
+
+    }
+    const handleHeaderClose = () => {
+        setShowModal(false)
+    }
+    const [PaymentMethodList, setPaymentMethodList] = useState([]);
+    const [DonationList, setDonationList] = useState([]);
+
+    const fetchPaymentMethods = async () => {
+        try {
+            const list = await getPaymentMethodList();
+            setPaymentMethodList(list);
+        } catch (error) {
+            // await Swal.fire({
+            //     title: "Payment Method List Not Found",
+            //     icon: "error",
+            //     text: error.errorMessage || "Can't Find Method List Now"
+            // });
+        }
+    };
+    const fetchDonationList = async () => {
+        try {
+            const list = await getDonationList();
+            setDonationList(list);
+        } catch (error) {
+           
+        }
+    };
+    useEffect(()=> { 
+        fetchPaymentMethods()
+        fetchDonationList()
+    }, [])
+
     return (
         <section className="py-4">
             <Container>
@@ -47,7 +109,7 @@ export default function Donation() {
                                 alt="Support Bangladesh"
                                 fill
                                 priority
-                                quality={75}
+                                quality={[75, 100]}
                                 style={{
                                     objectFit: "cover",
                                     objectPosition: "center"
@@ -62,46 +124,59 @@ export default function Donation() {
                         </div>
                     </Col>
                 </Row>
-                <Row className=" mx-4 mt-5">
-                    <Col md={3} lg={3} sm={12} xs={12}>
-                        <CustomButton variant="light" size={"lg"} className="mb-2 modifyDonationbutton">100 Taka</CustomButton>
-                    </Col>
-                    <Col md={3} lg={3} sm={12} xs={12}>
-                        <CustomButton variant="light" size={"lg"} className="mb-2 modifyDonationbutton">200 Taka</CustomButton>
-                    </Col>
-                    <Col md={3} lg={3} sm={12} xs={12}>
-                        <CustomButton variant="light" size={"lg"} className="mb-2 modifyDonationbutton">500 Taka</CustomButton>
-                    </Col>
-                    <Col md={3} lg={3} sm={12} xs={12}>
-                        <CustomButton variant="light" size={"lg"} className="mb-2 modifyDonationbutton">1000 Taka</CustomButton>
-                    </Col>
-                </Row>
-                <Form >
-                    <Row className=" align-items-center justify-content-center d-flex flex-column  ">
+                <Button className="mt-3" type="button" onClick={handleAddPaymentMethodModal}>
+                    Add Payment Method
+                </Button>
+                <Modal
+                    show={showModal}
+                    centered
+                >
+                    <Modal.Header>
+                        <Modal.Title>Add Payment Method</Modal.Title>
+                    </Modal.Header>
+                    <Form onSubmit={handleSubmit(handleAddPaymentMethod)} >
+                        <Modal.Body>
 
-                        <Col className="mt-3 mb-4 inputbox " md={4} lg={4}>
-                        <Form.Label >Others Amount:</Form.Label>
-                            <Form.Control
-                                type="number"
-                                placeholder="Other Amount (Taka)"
-                                size="lg"
-                                className="text-center amountinput"
-                                {...register("donationamount")}
+                            <Form.Group>
+                                <Form.Label >Name:</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="e.g. Bkash"
+                                    {...register("PaymentMethodName")}
+                                    isInvalid={!!errors.PaymentMethodName}
+                                />
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.PaymentMethodName?.message}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Label>Logo Link</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Paste the image link"
+                                    {...register("PaymentMethodImageLink")}
+                                    isInvalid={!!errors.PaymentMethodImageLink}
+                                />
+                            </Form.Group>
+                            <Form.Control.Feedback type="invalid">
+                                {errors.PaymentMethodImageLink?.message}
+                            </Form.Control.Feedback>
 
-                            />
-                        </Col>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="outline-secondary" type="button" onClick={handleHeaderClose} >
+                                Cancle
+                            </Button>
+                            <Button variant="success" type="submit">
+                                Confirm Adding
+                            </Button>
+                        </Modal.Footer>
+                    </Form>
+                </Modal>
+                <PaymentMethodtable data={PaymentMethodList}/>
+                <DonationHistory data={DonationList} />
 
-                        <Col xs="auto">
-                            <CustomButton variant="success" size={"lg"} >
-                                Donate Now
-                            </CustomButton>
-                        </Col>
-
-                    </Row>
-                </Form>
-             <DonationHistory/>
-               
             </Container>
-        </section>
+        </section >
     );
 }

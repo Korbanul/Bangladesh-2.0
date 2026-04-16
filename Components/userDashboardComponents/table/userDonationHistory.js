@@ -1,10 +1,9 @@
 import { Download } from "lucide-react";
 import { Badge, Col, Container, Row, Table } from "react-bootstrap";
 import "@/style/User/donationHistory.css";
-import CustomButton from "@/Components/common/CustomButton";
 import { useEffect, useState } from "react";
 
-export default function DonationHistory({data=[]}) {
+export default function UserDonationHistory({data=[]}) {
     // const fetchDonationList = async () => {
     //     try {
     //         const list = await getDonationList();
@@ -53,7 +52,6 @@ export default function DonationHistory({data=[]}) {
                         <Table responsive className="align-middle custom-user-table">
                             <thead>
                                 <tr>
-                                    <th className="text-muted fw-semibold small text-uppercase py-3">ID</th>
                                     <th className="text-muted fw-semibold small text-uppercase py-3">Transaction ID</th>
                                     <th className="text-muted fw-semibold small text-uppercase py-3">Method</th>
                                     <th className="text-muted fw-semibold small text-uppercase py-3">Amount</th>
@@ -61,7 +59,6 @@ export default function DonationHistory({data=[]}) {
                                     <th className="text-muted fw-semibold small text-uppercase py-3">Donor Phone</th>
                                     <th className="text-muted fw-semibold small text-uppercase py-3">Date & Time</th>
                                     <th className="text-muted fw-semibold small text-uppercase py-3">Status</th>
-                                    <th className="text-end text-muted fw-semibold small text-uppercase py-3 px-3">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,7 +71,6 @@ export default function DonationHistory({data=[]}) {
                                 ) : (
                                     data.map((item) => (
                                         <tr key={item.transactionId}>
-                                            <td className="py-3">{item.id}</td>
                                             <td className="py-3">{item.transactionId}</td>
 
                                             {/* Method: logo + name */}
@@ -103,13 +99,6 @@ export default function DonationHistory({data=[]}) {
                                                 </Badge>
                                             </td>
 
-                                            <td className="text-end py-3 px-3">
-                                                <div className="d-inline-flex align-items-center">
-                                                    <CustomButton variant="outline-primary" size="sm">
-                                                        <Download size={14} />
-                                                    </CustomButton>
-                                                </div>
-                                            </td>
                                         </tr>
                                     ))
                                 )}

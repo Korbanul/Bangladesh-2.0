@@ -22,5 +22,25 @@ export async function deleteUser(id) {
         credentials: "include"
         
     })
-
 }
+export async function addPaymentMethod(params) {
+    return apiClient("/admin/add-payment-method/",{
+        method:"PUT",
+        credentials:"include",
+        body:JSON.stringify(params)
+
+    })
+}
+export async function getPaymentMethodList() {
+    return apiClient("/donate/payment-method/",{
+        method:"GET",
+        credentials:"include",
+    })
+}
+export async function getDonationList() {
+    return apiClient("/admin/donation-list/",{
+        method:"GET",
+        credentials:"include",
+    })
+}
+

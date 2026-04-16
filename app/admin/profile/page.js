@@ -82,7 +82,7 @@ export default function ProfilePage() {
                                 />
                             </div>
                             <Card.Title className="fw-bold">{user.username}</Card.Title>
-                            {/* ✅ Render roles array properly */}
+                            {/* Render roles array properly */}
                             <Card.Text className="text-muted small">
                                 {user.roles && Array.from(user.roles)
                                     .map(r => r.replace("ROLE_", ""))
@@ -92,7 +92,7 @@ export default function ProfilePage() {
                         <ListGroup variant="flush" >
                             <ListGroup.Item className="small">
                                 <span className="text-muted ">Joined: </span>
-                                {user.joined ? new Date(user.joined).toLocaleString("en-US", {
+                                {user.joined ? new Date(user.joined).toLocaleString("en-BD", {
                                     year: "numeric",
                                     month: "long",
                                     day: "numeric",

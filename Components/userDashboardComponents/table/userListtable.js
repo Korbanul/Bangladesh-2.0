@@ -80,7 +80,7 @@ export default function UsersTable({ users, pagination, loading, error, onPageCh
                     ))}
                 </tbody>
             </Table>
-            <Row align-items-center mt-2>
+            <Row className="align-items-center mt-2">
                 <Col xs="auto" className="d-flex align-items-center justify-content-start gap-2">
                     <SlidersHorizontal size={15} className="text-secondary" />
                     <span className="text-secondary small">Rows per page:</span>

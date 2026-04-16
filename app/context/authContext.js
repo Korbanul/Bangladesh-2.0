@@ -2,7 +2,7 @@
 import { userProfile } from "@/Components/Auth/userService";
 import { createContext, use, useContext, useEffect, useState } from "react";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext(null); //Creating a Context API
 export default function AuthContextProvider({ children }) {
 
     const [user, setUser] = useState(null);
@@ -30,7 +30,7 @@ export default function AuthContextProvider({ children }) {
     //         .includes("ROLE_ADMIN") → checks if "ROLE_ADMIN" exists in the array
     // returns true or false
 
-    //After userDetails edit call this.
+    //After userDetails edit need to call this.
     const refreshUser = async () => {
         const data = await userProfile();
         setUser(data);
@@ -49,4 +49,4 @@ export default function AuthContextProvider({ children }) {
 
     
 }
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext); //Accessing a Context API by useContext

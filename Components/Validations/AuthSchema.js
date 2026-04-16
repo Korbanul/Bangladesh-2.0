@@ -20,12 +20,22 @@ export const loginSchema = z.object({
     password: z.string().min(6, "Password must be at least 6 characters")
 });
 
-export const dashboardSearch=z.object({
-    dsearch:z.string().min(1,"Empty text cannot be searched")
+export const dashboardSearch = z.object({
+    dsearch: z.string().min(1, "Empty text cannot be searched")
 })
 
-export const donationinputval=z.object({
+export const donationinputval = z.object({
     donationamount: z.number()
-    .int("Amount must be a whole number (no decimals)")
-    .min(20, "Minimum Amount is 20 taka")
+        .min(20, "Minimum Amount is 20 taka")
+        .max(100000, "Maximum Amount is 100,000")
+});
+export const donorInfoSchema = z.object({
+    guestName: z.string().min(2, "Name must be at least 2 characters"),
+    guestPhone: z.string().regex(/^01[3-9]\d{8}$/, "Enter a valid BD phone number"),
+    paymentmethod: z.string().min(1, "Payment method is required"),
+});
+export const donorInfoSchema2 = z.object({
+    
+    userPhone: z.string().regex(/^01[3-9]\d{8}$/, "Enter a valid BD phone number"),
+    paymentmethod: z.string().min(1, "Payment method is required"),
 });

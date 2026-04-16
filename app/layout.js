@@ -1,10 +1,9 @@
 import { Fira_Sans } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
-
-import NavBar from "@/Components/layout/Navbar";
-import FooterBD from "@/Components/layout/Footer";
+;
 import AuthContextProvider from "./context/authContext";
+import DonationListContextProvider from "./context/donationListContextProvider";
 
 
 const firaSans = Fira_Sans({
@@ -22,7 +21,9 @@ export default function RootLayout({ children }) {
 
       <body className={`${firaSans.className}`}>
         <AuthContextProvider>
-          {children}
+          <DonationListContextProvider>
+            {children}
+          </DonationListContextProvider>
         </AuthContextProvider>
 
       </body>

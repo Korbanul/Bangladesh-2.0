@@ -91,7 +91,7 @@ export default function ProfilePage() {
                         <ListGroup variant="flush" >
                             <ListGroup.Item className="small">
                                 <span className="text-muted ">Joined: </span>
-                                {user.joined ? new Date(user.joined).toLocaleString("en-US", {
+                                {user.joined ? new Date(user.joined).toLocaleString("en-BD", {
                                     year: "numeric",
                                     month: "long",
                                     day: "numeric",

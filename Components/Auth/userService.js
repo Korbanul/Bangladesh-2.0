@@ -7,10 +7,39 @@ export async function userProfile() {
     });
 }
 export async function updateProfile(data) {
-    return apiClient("/user/profile/updateprofile",{
-        method:"PATCH",
+    return apiClient("/user/profile/updateprofile", {
+        method: "PATCH",
         credentials: "include",
-        body:JSON.stringify(data) 
+        body: JSON.stringify(data)
     })
-    
+
+}
+export async function getAllActivePaymentMethod() {
+    return apiClient("/donate/active-payment-method", {
+        method: "GET",
+        credentials: "include",
+
+    })
+
+}
+
+export async function guestDonate(params) {
+    return apiClient("/donate/guest/",{
+    method:"POST",
+    credentials: "include",
+    body:JSON.stringify(params)
+    })
+}
+export async function userDonate(params) {
+    return apiClient("/donate/user/",{
+    method:"POST",
+    credentials: "include",
+    body:JSON.stringify(params)
+    })
+}
+export async function userDonationHistoryList() {
+    return apiClient("/user/donation-list/",{
+    method:"GET",
+    credentials: "include",
+    })
 }

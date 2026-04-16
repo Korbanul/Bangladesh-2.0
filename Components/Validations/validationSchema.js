@@ -21,4 +21,17 @@ export const adminDashboardUserSearch=z.object({
     .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters") // blocks < > ' " ; --
 })
 
+export const adminDashboardAddPaymentMethod=z.object({
+    PaymentMethodName:z
+    .string()
+    .min(3,"Minimum 3 Char")
+    .max(20, "Name must be within 20 char")
+    .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters"),
+
+    PaymentMethodImageLink:z
+    .string()
+    
+
+})
+
 
