@@ -33,7 +33,7 @@ export default function Donation() {
     }
 
     const handleAddPaymentMethod = async (data) => {
-        console.log(data)
+        // console.log(data)
         try {
             const payload = {
                 name: data.PaymentMethodName,

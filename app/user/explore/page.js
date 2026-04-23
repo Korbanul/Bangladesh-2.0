@@ -1,23 +1,25 @@
 "use client";
 import Image from 'next/image';
 import { Carousel, Container, Row, Col } from 'react-bootstrap';
-import styles from '@/style/User/explore.css';
+import '@/style/User/explore.css';
+import { useEffect } from 'react';
+import { useListContext } from '@/app/context/donationListContextProvider';
 
-// Mock data - in production, this could come from a CMS or API
+
 const slides = [
     { id: 1, src: '/hero1.jpg', title: 'Discover Innovation', desc: 'Explore the latest in tech.' },
     { id: 2, src: '/hero2.jpg', title: 'Future Solutions', desc: 'Building tomorrow, today.' },
     { id: 3, src: '/hero3.jpg', title: 'Future Solutions', desc: 'Building tomorrow, today.' },
 ];
 
-const galleryItems = [
-    { id: 1, src: '/gallery1.jpg', alt: 'Research' },
-    { id: 2, src: '/gallery2.jpg', alt: 'Collaboration' },
-    { id: 3, src: '/gallery3.jpg', alt: 'Agriculture' },
-    { id: 4, src: '/gallery4.jpg', alt: 'Medicine' },
-];
 
 export default function Explore() {
+
+    const{fetchAllImages,allImages}=useListContext();
+
+    useEffect(()=>{
+        fetchAllImages();
+    },[])
     return (
         <section className="exploreSection">
             {/* Slide Show Section */}
@@ -48,13 +50,13 @@ export default function Explore() {
                     <div className="underline"></div>
                 </div>
                 <Row className="g-4">
-                    {galleryItems.map((item) => (
-                        <Col key={item.id} xs={12} sm={6} lg={3}>
+                    {allImages.map((item) => (
+                        <Col key={item.publicId} xs={12} sm={6} lg={3}>
                             <div className="galleryCard">
                                 <div className="imageContainer">
                                     <Image
-                                        src={item.src}
-                                        alt={item.alt}
+                                        src={item.imageUrl}
+                                        alt="images"
                                         width={400}
                                         height={300}
                                         className="galleryImage"

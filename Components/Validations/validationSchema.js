@@ -34,4 +34,19 @@ export const adminDashboardAddPaymentMethod=z.object({
 
 })
 
+const ACCEPTED_IMAGE_TYPES = [ "image/jpeg", "image/png", "image/jpg","/image/svg"];
+const MAX_FILE_SIZE = 5000000; 
+
+
+export const adminImageUpload=z.object({
+    image: z
+    .custom((val) => val instanceof FileList && val.length > 0, "Please select an image.")
+    .refine((val) => val[0]?.size <= MAX_FILE_SIZE, "Max image size is 5MB.")
+    .refine(
+        (val) => ACCEPTED_IMAGE_TYPES.includes(val[0]?.type),
+        "Only .jpg, .jpeg, .png and .svg formats are supported."
+    )
+    
+});
+
 

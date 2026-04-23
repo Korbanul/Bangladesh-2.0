@@ -4,20 +4,28 @@ import CustomButton from "@/Components/common/CustomButton";
 import { Download, HeartHandshake, Image, Images, Newspaper, NewspaperIcon, PictureInPicture, PictureInPicture2 } from "lucide-react";
 import LastThreeNews from "@/Components/userDashboardComponents/lastThreeNews";
 import RecentDonation from "@/Components/userDashboardComponents/table/donationHistory";
-import { useDonationListContext } from "@/app/context/donationListContextProvider";
+import { useListContext } from "@/app/context/donationListContextProvider";
 import { userDonationHistoryList } from "@/Components/Auth/userService";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import UserDonationHistory from "@/Components/userDashboardComponents/table/userDonationHistory";
+import { getCountImage } from "@/Components/Auth/adminService";
 
 export default function DashBoard() {
-    const { userDonationList, setuserDonationList } = useDonationListContext();
+    const { userDonationList, setuserDonationList } = useListContext();
+    const [totalImage, setTotalImage] = useState();
     const fetchdonationHistoryList = async () => {
         const list = await userDonationHistoryList()
         setuserDonationList(list)
     }
+    const fetchCountImage = async () => {
+        const count = await getCountImage()
+        setTotalImage(count)
+    }
+    
 
     useEffect(() => {
         fetchdonationHistoryList()
+        fetchCountImage()
     }, [])
     return (
         <section>
@@ -40,7 +48,7 @@ export default function DashBoard() {
                     <Col sm={12} md={4} lg={4} className="text-center ">
                         <Card className='p-3  h-100' >
                             <span><Images size={40} className="text-muted" /></span>
-                            <Card.Title className='display-6 fw-medium mt-3 mb-1'>20</Card.Title>
+                            <Card.Title className='display-6 fw-medium mt-3 mb-1'>{totalImage}</Card.Title>
                             <Card.Text className='text-muted fw-medium small text-uppercase ls-wide'>Explore</Card.Text>
                         </Card>
                     </Col>

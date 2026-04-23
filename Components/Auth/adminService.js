@@ -43,4 +43,41 @@ export async function getDonationList() {
         credentials:"include",
     })
 }
+export async function uploadImage(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    return apiClient("/admin/upload-image",{
+        method:"POST",
+        credentials:"include",
+        body:formData
+    })
+}
+export async function getAllImage() {
+    
+    return apiClient("/admin/all-images",{
+        method:"GET",
+        credentials:"include",
+    })
+}
+export async function getCountImage() {
+    
+    return apiClient("/user/total-image",{
+        method:"GET",
+        credentials:"include",
+    })
+}
+export async function getCountImageAdmin() {
+    
+    return apiClient("/admin/total-image",{
+        method:"GET",
+        credentials:"include",
+    })
+}
+export async function getTotalDoantionAdmin() {
+    
+    return apiClient("/admin/total-donation",{
+        method:"GET",
+        credentials:"include",
+    })
+}
 

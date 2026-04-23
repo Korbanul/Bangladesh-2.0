@@ -12,14 +12,14 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/app/context/authContext";
 import { getAllActivePaymentMethod, userDonate, userDonationHistoryList } from "@/Components/Auth/userService";
 import Swal from "sweetalert2";
-import { useDonationListContext } from "@/app/context/donationListContextProvider";
+import { useListContext } from "@/app/context/donationListContextProvider";
 import UserDonationHistory from "@/Components/userDashboardComponents/table/userDonationHistory";
 
 
 
 export default function Donation() {
     const { user } = useAuth();
-    const {userDonationList,setuserDonationList} =useDonationListContext();
+    const {userDonationList,setuserDonationList} =useListContext();
     const {
         register,
         reset,
