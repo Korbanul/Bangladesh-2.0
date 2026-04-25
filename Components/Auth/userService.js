@@ -62,3 +62,9 @@ export async function getTotalNewsCount(){
         credentials:"include"
     })
 }
+export async function getNews(params){
+    return apiClient(`/user/news/${params}`,{
+        method:"GET",
+        credentials:"include"
+    })
+}

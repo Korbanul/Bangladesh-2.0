@@ -1,13 +1,41 @@
 "use client"
 import Image from "next/image";
-import { Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import "@/style/NewsCard.css"
-import CustomButton from "../common/CustomButton";
+import Link from "next/link";
+import { useAuth } from "@/app/context/authContext";
+import Swal from "sweetalert2";
+import { deleteNews } from "../Auth/adminService";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+
 export default function NewsCard({ News }) {
-    const truncate = (text, limit = 150) => {
-        if (!text) return "";
-        return text.length > limit ? text.slice(0, limit) + " ..." : text;
-    };
+    const { user } = useAuth()
+    const [deleting,setDeleting] =useState(null);
+    const pathname = usePathname();              
+    const isHomePage = pathname === "/";  
+    const handleDelete = async () => {
+        try {
+            setDeleting(true)
+            const response = await deleteNews(News.id)
+            Swal.fire(
+                {
+                    title: "News with id: " + News.id + " deleted",
+                    icon: "success"
+                }
+            )
+        } catch (error) {
+            Swal.fire(
+                {
+                    title: " Can't delete now",
+                    icon: "error",
+                    text:error.errorMessage
+                }
+            )
+        }finally{
+            setDeleting(false);
+        }
+    }
     return (
         <Card className="w-100 eachcard">
             <Row className="d-flex justify-content-center align-items-center">
@@ -30,7 +58,7 @@ export default function NewsCard({ News }) {
 
                         <Card.Text style={{
                             display: "-webkit-box",
-                            WebkitLineClamp: 3, // Change this to your desired line number
+                            WebkitLineClamp: 3, // to show few line number else hidden
                             WebkitBoxOrient: "vertical",
                             overflow: "hidden",
                         }} >
@@ -48,7 +76,34 @@ export default function NewsCard({ News }) {
                             </small>
                             {News.description}
                         </Card.Text>
-                        <CustomButton variant="success">Read More</CustomButton>
+                        {user ?
+                            user?.roles == "ROLE_ADMIN" ?
+                                <div className="d-flex gap-2">
+                                    <Button className="btn-success" as={Link}
+                                        href={`/admin/manageNews/${News.id}`}
+                                        target="_blank">Read More
+                                    </Button>
+                                    
+                                    {!isHomePage && ( 
+                                        <Button className="btn-danger" onClick={handleDelete}>
+                                            {deleting ? "Deleting..." : "Delete"}
+                                        </Button>
+                                    )}
+                                </div>
+                                : <Button className="btn-success" as={Link}
+                                    href={`/user/news/${News.id}`}
+                                    target="_blank"
+                                >Read More</Button>
+                            :
+
+
+                            <Button className="btn-success" as={Link}
+                                href={`/user/news/${News.id}`}
+                                target="_blank"
+                            >Read More</Button>
+                        }
+
+
                     </Card.Body>
                 </Col>
             </Row>

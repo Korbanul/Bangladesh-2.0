@@ -1,9 +1,14 @@
 "use client"
 import Image from "next/image";
-import { Card, CardBody, Col, Row } from "react-bootstrap";
+import { Button, Card, CardBody, Col, Row } from "react-bootstrap";
 import "@/style/NewsCard.css"
-import CustomButton from "../common/CustomButton";
+import { useAuth } from "@/app/context/authContext";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function NewsCard({ News }) {
+    const pathname = usePathname();              
+        const isHomePage = pathname === "/";  
+    const { user } = useAuth();
     return (
         <Card className="w-100 eachcard">
             <Row >
@@ -34,7 +39,29 @@ export default function NewsCard({ News }) {
                             </small>
                             {News.description}
                         </Card.Text>
-                        <CustomButton variant="success">Read More</CustomButton>
+                        {user ?
+                            user?.roles == "ROLE_ADMIN" ?
+                                <>
+                                    <Button className="btn-success" as={Link}
+                                        href={`/admin/manageNews/${News.id}`}
+                                        target="_blank">Read More
+                                    </Button>
+                                   
+                                </>
+
+                                : <Button className="btn-success" as={Link}
+                                    href={`/user/news/${News.id}`}
+                                    target="_blank"
+                                >Read More</Button>
+                            :
+
+
+                            <Button className="btn-success" as={Link}
+                                href={`/user/news/${News.id}`}
+                                target="_blank"
+                            >Read More</Button>
+                        }
+
                     </Card.Body>
 
 

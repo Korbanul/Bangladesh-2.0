@@ -15,7 +15,6 @@ export default function News() {
             }
     
         }
-    
         useEffect(() => {
             fetchAllNews();
         }, [])

@@ -1,9 +1,13 @@
 "use client";
-import { Col, Container, Row, Table, Image, Button } from "react-bootstrap";
+import { Col, Container, Row, Table, Image, Button, Spinner } from "react-bootstrap";
 import "@/style/User/donationHistory.css";
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { chnagePaymentMethodStatus, deletePaymentMethod } from "@/Components/Auth/adminService";
 
 
-export default function PaymentMethodtable({ data = [] }) {
+export default function PaymentMethodtable({ data = [] ,method}) {
+
 
     const columns = [
         { key: "id", label: "ID" },
@@ -12,6 +16,40 @@ export default function PaymentMethodtable({ data = [] }) {
         { key: "active", label: "Status" },
     ];
 
+    const [status, setStatus] = useState(false);
+    const [idDeleted,setDeleted]=useState(false);
+    useEffect(() => {
+        method();
+    }, [status,idDeleted]);
+
+    const handleStatus = async (id) => {
+        try {
+            
+            const response = await chnagePaymentMethodStatus(id);
+            setStatus(prev=>!prev)            
+        } catch (error) {
+            Swal.fire({
+                title: "Status change failed",
+                icon: "error",
+                text: error?.message || error?.errorMessage || "Unknown error",
+                timer: 2000
+            })
+        }
+    }
+    const handleDelete = async (id) => {
+        try {
+            const response = await deletePaymentMethod(id);
+
+            setDeleted(prev =>!prev);
+        } catch (error) {
+            Swal.fire({
+                title: "Status change failed",
+                icon: "error",
+                text: error?.message || error?.errorMessage || "Unknown error",
+                timer: 2000
+            })
+        }
+    }
     return (
         <section>
             <Container>
@@ -49,7 +87,7 @@ export default function PaymentMethodtable({ data = [] }) {
                                             <td className="py-3">{item.id}</td>
 
                                             <td className="py-3 fw-semibold">{item.name}</td>
-                                  
+
                                             <td className="py-3">
                                                 <Image
                                                     src={item.logoUrl}
@@ -61,22 +99,25 @@ export default function PaymentMethodtable({ data = [] }) {
                                             </td>
                                             <td>
                                                 <span
-                                                    className={`badge ${item.active
-                                                        ? "bg-success-subtle text-success border border-success-subtle"
+                                                    className={`badge ${
+                                                        item.active 
+                                                        ? "bg-success-subtle text-success border border-success-subtle" 
                                                         : "bg-danger-subtle text-danger border border-danger-subtle"
-                                                        }`}
+                                                    }`}
                                                 >
                                                     {item.active ? "Active" : "Inactive"}
+                                                    {/* // here status used for rerender. */}
                                                 </span>
                                             </td>
 
                                             {/* Action */}
                                             <td className="text-end py-3 px-3">
                                                 <div className="d-inline-flex gap-2">
-                                                    <Button size="sm" variant="outline-secondary">
-                                                        Inactive
+                                                    <Button size="sm" variant="outline-secondary" onClick={() => handleStatus(item.id)}>
+                                                    {item.active ? "Inactive" : "Active"}
                                                     </Button>
-                                                    <Button size="sm" variant="outline-danger">
+                                                    <Button size="sm" variant="outline-danger"  >
+                                                        {/* onClick={() => handleDelete(item.id)} */}
                                                         Delete
                                                     </Button>
                                                 </div>

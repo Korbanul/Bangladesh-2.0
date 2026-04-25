@@ -105,3 +105,28 @@ export async function getAllNews(){
         credentials:"include"
     })
 }
+
+export async function getNewsAdmin(params){
+    return apiClient(`/admin/news/${params}`,{
+        method:"GET",
+        credentials:"include"
+    })
+}
+export async function deleteNews(params){
+    return apiClient(`/admin/delete-news/${params}`,{
+        method:"DELETE",
+        credentials:"include"
+    })
+}
+export async function chnagePaymentMethodStatus(params){
+    return apiClient(`/admin/payment-method/change-status/${params}`,{
+        method:"PATCH",
+        credentials:"include"
+    })
+}
+export async function deletePaymentMethod(params){
+    return apiClient(`/admin/payment-method/delete/${params}`,{
+        method:"DELETE",
+        credentials:"include"
+    })
+}

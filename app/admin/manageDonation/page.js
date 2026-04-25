@@ -68,6 +68,7 @@ export default function Donation() {
             //     icon: "error",
             //     text: error.errorMessage || "Can't Find Method List Now"
             // });
+            console.log(error.errorMessage);
         }
     };
     const fetchDonationList = async () => {
@@ -173,7 +174,7 @@ export default function Donation() {
                         </Modal.Footer>
                     </Form>
                 </Modal>
-                <PaymentMethodtable data={PaymentMethodList}/>
+                <PaymentMethodtable data={PaymentMethodList} method={fetchPaymentMethods}/>
                 <DonationHistory data={DonationList} />
 
             </Container>
