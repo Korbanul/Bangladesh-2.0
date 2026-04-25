@@ -43,3 +43,22 @@ export async function userDonationHistoryList() {
     credentials: "include",
     })
 }
+
+export async function getAllNewsUser(){
+    return apiClient("/admin/all-news",{
+        method:"GET",
+        credentials:"include"
+    })
+}
+export async function getRecentThreeNews(){
+    return apiClient("/home/recent-news",{
+        method:"GET",
+        credentials:"include"
+    })
+}
+export async function getTotalNewsCount(){
+    return apiClient("/home/total-news",{
+        method:"GET",
+        credentials:"include"
+    })
+}

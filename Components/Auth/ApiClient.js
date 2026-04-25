@@ -5,12 +5,12 @@ export async function apiClient(endpoint, options = {}) {
         {
             ...options,                         
             headers: {                           
-                ...(isFormData ? {} : { "Content-Type": "application/json" }),
+                ...(isFormData ? {} : { "Content-Type": "application/json" }), //
                 ...options.headers          
             }
         }
     );
-    // First convert response into text than json. else emptyString.json throw error.
+    // First convert response into text than json. else emptyString.json throw error. From backend should return JSON . use Map
     const text = await response.text();
     const responseData = text ? JSON.parse(text) : {};
 

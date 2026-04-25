@@ -49,7 +49,7 @@ export default function Sidebar() {
         handleResize();
 
         window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize); //what does thse 2 line means?
+        return () => window.removeEventListener("resize", handleResize); 
 
     }, []);
     return (

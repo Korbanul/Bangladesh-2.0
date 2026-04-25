@@ -10,43 +10,59 @@ export const editProfile = z.object({
     dob: z
         .string()
         .min(1, "Date of birth is required"),
-    
-    
-})
 
-export const adminDashboardUserSearch=z.object({
-    searchUser:z
-    .string()
-    .max(100, "Search too long")
-    .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters") // blocks < > ' " ; --
-})
-
-export const adminDashboardAddPaymentMethod=z.object({
-    PaymentMethodName:z
-    .string()
-    .min(3,"Minimum 3 Char")
-    .max(20, "Name must be within 20 char")
-    .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters"),
-
-    PaymentMethodImageLink:z
-    .string()
-    
 
 })
 
-const ACCEPTED_IMAGE_TYPES = [ "image/jpeg", "image/png", "image/jpg","/image/svg"];
-const MAX_FILE_SIZE = 5000000; 
+export const adminDashboardUserSearch = z.object({
+    searchUser: z
+        .string()
+        .max(100, "Search too long")
+        .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters") // blocks < > ' " ; --
+})
+
+export const adminDashboardAddPaymentMethod = z.object({
+    PaymentMethodName: z
+        .string()
+        .min(3, "Minimum 3 Char")
+        .max(20, "Name must be within 20 char")
+        .regex(/^[a-zA-Z0-9\s@._-]*$/, "Invalid characters"),
+
+    PaymentMethodImageLink: z
+        .string()
 
 
-export const adminImageUpload=z.object({
+})
+
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/jpg", "/image/svg"];
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+
+export const adminImageUpload = z.object({
     image: z
-    .custom((val) => val instanceof FileList && val.length > 0, "Please select an image.")
-    .refine((val) => val[0]?.size <= MAX_FILE_SIZE, "Max image size is 5MB.")
-    .refine(
-        (val) => ACCEPTED_IMAGE_TYPES.includes(val[0]?.type),
-        "Only .jpg, .jpeg, .png and .svg formats are supported."
-    )
-    
+        .custom((val) => val instanceof FileList && val.length > 0, "Please select an image.")
+        .refine((val) => val[0]?.size <= MAX_FILE_SIZE, "Max image size is 5MB.")
+        .refine(
+            (val) => ACCEPTED_IMAGE_TYPES.includes(val[0]?.type),
+            "Only .jpg, .jpeg, .png and .svg formats are supported."
+        )
+
+});
+export const Newsform = z.object({
+    image: z
+        .custom((val) => val instanceof FileList && val.length > 0, "Please select an image.")
+        .refine((val) => val[0]?.size <= MAX_FILE_SIZE, "Max image size is 5MB.")
+        .refine(
+            (val) => ACCEPTED_IMAGE_TYPES.includes(val[0]?.type),
+            "Only .jpg, .jpeg, .png and .svg formats are supported."
+        ),
+    title: z.string()
+        .min(3, "Title must be at least 3 characters.")
+        .max(100, "Title too long."),
+
+    description: z.string()
+        .min(10, "Description must be at least 10 characters."),
+
 });
 
 

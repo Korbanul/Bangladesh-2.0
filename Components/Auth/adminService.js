@@ -80,4 +80,28 @@ export async function getTotalDoantionAdmin() {
         credentials:"include",
     })
 }
+export async function getTotalDoantionUser() {
+    
+    return apiClient("/user/total-donation",{
+        method:"GET",
+        credentials:"include",
+    })
+}
+export async function CreateNews(params) {
+    const formData= new FormData();
+    formData.append("title",params.title)
+    formData.append("description",params.description)
+    formData.append("image",params.image[0])
+    return apiClient("/admin/add-news",{
+        method:"POST",
+        credentials:"include",
+        body:formData
+    })
+}
 
+export async function getAllNews(){
+    return apiClient("/admin/all-news",{
+        method:"GET",
+        credentials:"include"
+    })
+}

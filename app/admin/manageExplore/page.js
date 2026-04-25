@@ -43,7 +43,7 @@ export default function Explore() {
 
     const handleFileUpload = async (data) => {
         const file = data.image[0];
-         console.log(data);          
+        //  console.log(data);          
         // console.log("file:", file);          // must be File object
         // console.log("file name:", file?.name); // must show filename.jpg
         try {

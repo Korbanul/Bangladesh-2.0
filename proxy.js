@@ -20,6 +20,7 @@ export const config = {
   matcher: [
     "/auth/:any*" 
     ,"/user/:any*" 
+    ,"/admin/:any*"
 
   ]
 }

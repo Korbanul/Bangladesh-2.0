@@ -1,10 +1,9 @@
 import { Col, Container, Row } from "react-bootstrap";
-import Newsdata from "@/data/newsdata"
 import NewsCard from "../cards/NewsCard";
 import NewsCard2 from "../cards/NewsCard2";
 import "@/style/NewsCard.css"
 
-export default function RecentNewSection() {
+export default function RecentNewSection({newsList}) {
     return (
         <section className="px-4">
          {/* This px -4 is very important for all device it will keep scpace between screen edge and the section 1.5 rem left and right */}
@@ -23,9 +22,9 @@ export default function RecentNewSection() {
                 </Row>
 
                 <Row >
-                        {Newsdata.map((newsdata)=>(<Col key={newsdata.id} xs={12} sm={12} md={12} lg={12} className="mb-4 p-4 NewsCard">
+                        {newsList.map((news)=>(<Col key={news.id} xs={12} sm={12} md={12} lg={12} className="mb-4 p-4 NewsCard">
                                 {
-                                    newsdata.id%2==1 ? <NewsCard News={newsdata} />  : <NewsCard2 News={newsdata}/>
+                                    news.id%2==1 ? <NewsCard News={news} />  : <NewsCard2 News={news}/>
                                 }
                         </Col>))}
                 </Row>

@@ -33,9 +33,9 @@ export default function LogIn() {
             }
             const response = await LoginUser(trimmedData);
             const userData = await refreshUser();
-            console.log("Login Successful", response);
+            // console.log("Login Successful", response);
             await Swal.fire({
-                title: " Login SuccessFul",
+                title: " Login Successful",
                 text: "Congratulations!",
                 icon: "success",
                 timer:1000

@@ -1,6 +1,7 @@
-"use client"
+ "use client"
 import { getAllImage } from "@/Components/Auth/adminService";
-import { createContext, useContext, useState } from "react";
+import { getAllNewsUser, getRecentThreeNews, getTotalNewsCount } from "@/Components/Auth/userService";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const donationListContext = createContext();
 //Also for Image loading 
@@ -16,10 +17,35 @@ export default function DonationListContextProvider({ children }) {
         }
     }
 
+    //For News Card
+     const [recentThreeNews, setRecentThreeNews] = useState([]);
+     const [totalNews, setTotalNews] = useState(null);
+        const fetchRecentThreeNews = async () => {
+            try {
+                const response = await getRecentThreeNews();
+                setRecentThreeNews(response);
+            } catch (error) {
+                console.log(error);
+            }
     
+        }
+        const fetchTotalNewsCount = async () => {
+            try {
+                const response = await getTotalNewsCount();
+                setTotalNews(response);
+            } catch (error) {
+                console.log(error);
+            }
+    
+        }
+
+
+    useEffect (()=>{
+        fetchRecentThreeNews()
+    },[])
 
     return (
-        <donationListContext.Provider value={{ userDonationList, setuserDonationList, fetchAllImages, allImages }}>
+        <donationListContext.Provider value={{ userDonationList, setuserDonationList, fetchAllImages, allImages ,recentThreeNews, fetchRecentThreeNews, fetchTotalNewsCount, totalNews }}>
             {children}
         </donationListContext.Provider>
     );

@@ -23,7 +23,7 @@ export default function UserDashboardNavbar() {
         { name: 'Expole', href: '/user/explore', icon: <Images size={20} /> }
     ];
     const adminnavItems = [
-        { name: 'Admin Dashboard', href: '/admin/Dashboard', icon: <LayoutDashboard size={20} /> },
+        { name: 'Admin Dashboard', href: '/admin/dashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'Manage News', href: '/admin/manageNews', icon: <Newspaper size={20} /> },
         { name: 'Manage Donation', href: '/admin/manageDonation', icon: <HeartHandshake size={20} /> },
         { name: 'Manage Expole', href: '/admin/manageExplore', icon: <Images size={20} /> },
@@ -86,27 +86,7 @@ export default function UserDashboardNavbar() {
                         onClick={() => setShowMobile(true)}
                     >
                         <Menu size={20} />
-                    </CustomButton>
-
-
-                    <Form
-                        className="d-flex align-items-center navbar-search"
-
-                        onSubmit={handleSubmit(onSearch)}
-                    >
-                        <Form.Group className="input-group input-group-md ">
-                            <span className="input-group-text bg-light border-end-0">
-                                <Search size={16} className="text-muted" />
-                            </span>
-                            <Form.Control
-                                type="search"
-                                placeholder="Search data..."
-                                className="bg-light border-start-0 ps-0"
-                                {...register("dsearch")}
-                                isInvalid={!!errors.dsearch}
-                            />
-                        </Form.Group >
-                    </Form>
+                    </CustomButton>                    
 
 
                     <div className="d-flex align-items-center gap-3 ps-2">
@@ -133,7 +113,6 @@ export default function UserDashboardNavbar() {
                                 <Dropdown.Header>Account Settings</Dropdown.Header>
 
                                 <Dropdown.Item as={Link} href={isAdmin() ? "/admin/profile" : "/user/profile"} className="item">My Profile</Dropdown.Item>
-                                <Dropdown.Item as={Link} href="/dashboard/settings" className="item">Settings</Dropdown.Item>
                                 <Dropdown.Divider />
                                 <Dropdown.Item onClick={handleLogout} className="text-danger item">
                                     Logout
