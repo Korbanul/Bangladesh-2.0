@@ -124,9 +124,3 @@ export async function chnagePaymentMethodStatus(params){
         credentials:"include"
     })
 }
-export async function deletePaymentMethod(params){
-    return apiClient(`/admin/payment-method/delete/${params}`,{
-        method:"DELETE",
-        credentials:"include"
-    })
-}
