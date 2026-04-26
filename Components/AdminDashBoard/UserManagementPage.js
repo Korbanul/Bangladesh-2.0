@@ -149,9 +149,9 @@ export default function UserManagementPage() {
                                 <ImportIcon size={14} /> Export
                             </Button>
 
-                            <Button variant="primary" size="sm" className="d-flex align-items-center gap-1" onClick={handleAddMember}>
+                            {/* <Button variant="primary" size="sm" className="d-flex align-items-center gap-1" onClick={handleAddMember}>
                                 <UserPlus size={14} /> Add member
-                            </Button>
+                            </Button> */}
                         </div>
                     </Navbar>
                 </Col>

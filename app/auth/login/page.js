@@ -12,6 +12,7 @@ import { useAuth } from "@/app/context/authContext";
 import { useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
 import { email } from "zod";
+import Link from "next/link";
 
 export default function LogIn() {
     const { isAdmin, refreshUser } = useAuth();
@@ -109,6 +110,11 @@ export default function LogIn() {
                     <Row>
                         <Col className=" mb-2 mt-3 d-flex justify-content-center" xl="12" xs="12" sm="12" md="12" >
                             <CustomButton variant="success" size="lg" type="submit" className="w-100">Login</CustomButton>
+                        </Col>
+                        <Col className="mt-5 d-flex align-items-center justify-content-center">
+                            <span className="fs-6 fw-bold text-muted">Not a user?&nbsp; &nbsp; </span>
+                            <Link href="/auth/signup" className="fs-6" >SignUp</Link>
+                            
                         </Col>
                     </Row>
                 </Form>
