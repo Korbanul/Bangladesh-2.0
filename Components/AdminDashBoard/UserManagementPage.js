@@ -93,8 +93,9 @@ export default function UserManagementPage() {
         <Container fluid>
             <Row>
                 <Col className="d-flex">
-                    <Navbar bg="white" expand="lg" className="border-bottom py-2">
-                        <Form className="d-flex align-items-center navbar-search">
+                    <Navbar bg="white" expand="lg" className="border-bottom py-2 px-2 flex-grow-1 gap-2 "> {/* flex-grow-1 used it will take full width  */}
+                        
+                        <Form className="d-flex align-items-center navbar-search mx-2">
                             <Form.Group className="input-group input-group-md">
                                 <span className="input-group-text bg-light border-end-0">
                                     <Search size={16} className="text-muted" />
@@ -113,7 +114,7 @@ export default function UserManagementPage() {
 
                         </Form>
                         {/* Right side controls */}
-                        <div className="d-flex align-items-center gap-2 ms-auto">
+                        <div className="d-flex align-items-center gap-2 ms-auto mx-2">
 
                             {/* Sort */}
                             <Dropdown>
