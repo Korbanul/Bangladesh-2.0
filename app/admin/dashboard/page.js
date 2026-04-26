@@ -4,22 +4,40 @@ import { HeartHandshake, Images, NewspaperIcon } from "lucide-react";
 import LastThreeNews from "@/Components/userDashboardComponents/lastThreeNews";
 import RecentDonation from "@/Components/userDashboardComponents/table/donationHistory";
 import { useEffect, useState } from "react";
-import { getCountImageAdmin, getTotalDoantionAdmin } from "@/Components/Auth/adminService";
+import { getCountImageAdmin, getRecentThreeDonation, getTotalDoantionAdmin } from "@/Components/Auth/adminService";
 import { useListContext } from "@/app/context/donationListContextProvider";
 import "@/style/dashboard/dashboardStatCard.css"
 export default function DashBoard() {
 
-    const {fetchRecentThreeNews,recentThreeNews,totalNews,fetchTotalNewsCount} = useListContext();
+    const { fetchRecentThreeNews, recentThreeNews, totalNews, fetchTotalNewsCount } = useListContext();
     const [totalImage, setTotalImage] = useState();
     const [totalDonation, setTotalDonation] = useState();
+    const [recentDonation, setRecentDonation] = useState();
     const fetchCountImage = async () => {
-        const count = await getCountImageAdmin()
-        setTotalImage(count)
+        try {
+            const count = await getCountImageAdmin()
+            setTotalImage(count)
+        } catch (error) {
+            console.log(error?.errorMessage)
+        }
     }
     const fetchTotalDonation = async () => {
+        try {
             const count = await getTotalDoantionAdmin()
             setTotalDonation(count)
+        } catch (error) {
+            console.log(error?.errorMessage)
         }
+    }
+    const fetchRecentThreeDonation = async () => {
+        try {
+            const count = await getRecentThreeDonation()
+            setRecentDonation(count)
+        } catch (error) {
+            console.log(error?.errorMessage)
+        }
+
+    }
 
 
     useEffect(() => {
@@ -27,8 +45,8 @@ export default function DashBoard() {
         fetchTotalDonation()
         fetchRecentThreeNews()
         fetchTotalNewsCount()
+        fetchRecentThreeDonation()
     }, [])
-
     return (
         <section>
             <Container>
@@ -90,8 +108,8 @@ export default function DashBoard() {
                 <h4 className="fw-bold mb-1">Recent News</h4>
                 <p className="text-muted mb-0">Show more in News Section.</p>
             </div>
-            <LastThreeNews newsList={recentThreeNews}/>
-            <RecentDonation />
+            <LastThreeNews newsList={recentThreeNews} />
+            <RecentDonation data={recentDonation} />
 
         </section>
     );

@@ -124,3 +124,10 @@ export async function chnagePaymentMethodStatus(params){
         credentials:"include"
     })
 }
+
+export async function getRecentThreeDonation(){
+    return apiClient("/admin/recent-donation",{
+        method:"GET",
+        credentials:"include"
+    })
+}
