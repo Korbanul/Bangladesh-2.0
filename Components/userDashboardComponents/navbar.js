@@ -20,13 +20,13 @@ export default function UserDashboardNavbar() {
         { name: 'Dashboard', href: '/user/dashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'News', href: '/user/news', icon: <Newspaper size={20} /> },
         { name: 'Donation', href: '/user/donation', icon: <HeartHandshake size={20} /> },
-        { name: 'Expole', href: '/user/explore', icon: <Images size={20} /> }
+        { name: 'Explore', href: '/user/explore', icon: <Images size={20} /> }
     ];
     const adminnavItems = [
         { name: 'Admin Dashboard', href: '/admin/dashboard', icon: <LayoutDashboard size={20} /> },
         { name: 'Manage News', href: '/admin/manageNews', icon: <Newspaper size={20} /> },
         { name: 'Manage Donation', href: '/admin/manageDonation', icon: <HeartHandshake size={20} /> },
-        { name: 'Manage Expole', href: '/admin/manageExplore', icon: <Images size={20} /> },
+        { name: 'Manage Explore', href: '/admin/manageExplore', icon: <Images size={20} /> },
         { name: 'Manage Users', href: '/admin/manageUser', icon: <User2 size={20} /> }
     ];
     const router = useRouter();
