@@ -9,7 +9,7 @@ import { useListContext } from "@/app/context/donationListContextProvider";
 import "@/style/dashboard/dashboardStatCard.css"
 export default function DashBoard() {
 
-    const { fetchRecentThreeNews, recentThreeNews, totalNews, fetchTotalNewsCount } = useListContext();
+    const { fetchRecentThreeNews, recentThreeNews, totalNews, fetchTotalNewsCount,isnewsDeleted } = useListContext();
     const [totalImage, setTotalImage] = useState();
     const [totalDonation, setTotalDonation] = useState();
     const [recentDonation, setRecentDonation] = useState();
@@ -46,7 +46,7 @@ export default function DashBoard() {
         fetchRecentThreeNews()
         fetchTotalNewsCount()
         fetchRecentThreeDonation()
-    }, [])
+    }, [isnewsDeleted])
     return (
         <section>
             <Container>

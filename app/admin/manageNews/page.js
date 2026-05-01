@@ -1,4 +1,6 @@
 "use client"
+import { useAuth } from "@/app/context/authContext";
+import { useListContext } from "@/app/context/donationListContextProvider";
 import { CreateNews, getAllNews } from "@/Components/Auth/adminService";
 import LastThreeNews from "@/Components/userDashboardComponents/lastThreeNews";
 import { Newsform } from "@/Components/Validations/validationSchema";
@@ -20,7 +22,7 @@ export default function News() {
     const [loading, setLoading] = useState(false);
     const [isNewsCreated, setIsNewsCreated] = useState(false);
     const [allNews, setallNews] = useState([]);
-
+    const {isnewsDeleted} =useListContext();
     const handleNewsForm = async (data) => {
 
         try {
@@ -59,7 +61,7 @@ export default function News() {
 
     useEffect(() => {
         fetchAllNews();
-    }, [isNewsCreated])
+    }, [isNewsCreated,isnewsDeleted])
     return (
         <section>
             <Container>

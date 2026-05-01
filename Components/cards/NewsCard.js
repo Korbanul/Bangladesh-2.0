@@ -8,16 +8,20 @@ import Swal from "sweetalert2";
 import { deleteNews } from "../Auth/adminService";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { useListContext } from "@/app/context/donationListContextProvider";
 
 export default function NewsCard({ News }) {
     const { user } = useAuth()
+    const {setNewsDeleted } = useListContext()
     const [deleting,setDeleting] =useState(null);
     const pathname = usePathname();              
     const isHomePage = pathname === "/";  
     const handleDelete = async () => {
         try {
             setDeleting(true)
+            
             const response = await deleteNews(News.id)
+            setNewsDeleted(prev=>!prev)
             Swal.fire(
                 {
                     title: "News with id: " + News.id + " deleted",

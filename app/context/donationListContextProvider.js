@@ -8,6 +8,7 @@ const donationListContext = createContext();
 export default function DonationListContextProvider({ children }) {
     const [userDonationList, setuserDonationList] = useState([])
     const [allImages, setAllImages] = useState([]); //this is for Explore section
+    const [isnewsDeleted,setNewsDeleted]=useState(false)
     const fetchAllImages = async () => {
         try {
             const response = await getAllImage();
@@ -45,7 +46,7 @@ export default function DonationListContextProvider({ children }) {
     },[])
 
     return (
-        <donationListContext.Provider value={{ userDonationList, setuserDonationList, fetchAllImages, allImages ,recentThreeNews, fetchRecentThreeNews, fetchTotalNewsCount, totalNews }}>
+        <donationListContext.Provider value={{ userDonationList, setuserDonationList, fetchAllImages, allImages ,recentThreeNews, fetchRecentThreeNews, fetchTotalNewsCount, totalNews, isnewsDeleted,setNewsDeleted }}>
             {children}
         </donationListContext.Provider>
     );
